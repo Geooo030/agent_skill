@@ -1,0 +1,37 @@
+{
+  "name": "wedding-fabric-lead-hunter",
+  "version": "1.0.0",
+  "description": "婚纱布料获客专家 | Wedding Fabric Lead Hunter. 专为婚纱布料/蕾丝原料供应商设计的获客技能。",
+  "author": "ClawDBot",
+  "license": "MIT",
+  "created_at": "2026-04-03",
+  "gitRepo": "git@github.com:Geooo030/agent_skill.git",
+  "updateStrategy": "pull",
+  "tags": ["leads", "wedding", "fabric", "sales", "b2b", "outreach", "prospecting"],
+  "dependencies": {
+    "skills": ["lead-hunter", "lead-research-assistant-cn", "web-tools-guide"]
+  },
+  "files": {
+    "config": {
+      "icp-wedding-fabric.yaml": "ICP 配置文件",
+      "business-profile.yaml": "业务配置模板"
+    },
+    "templates": {
+      "lead-template.json": "线索数据模板",
+      "contact-strategy-template.csv": "联系策略模板"
+    },
+    "scripts": {
+      "search-queries.md": "搜索关键词库",
+      "run-lead-hunt.sh": "执行脚本"
+    },
+    "references": {
+      "wedding-regions.md": "婚纱产业带介绍",
+      "decision-makers.md": "决策人角色说明"
+    },
+    "output": {
+      "leads.json": "线索 JSON 文件",
+      "leads.csv": "线索 CSV 文件",
+      "contact-strategy.csv": "联系策略文件"
+    }
+  }
+}

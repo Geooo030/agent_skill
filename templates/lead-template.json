@@ -1,0 +1,22 @@
+{
+  "id": "lead-XXX",
+  "company_name": "公司名称",
+  "company_type": "婚纱厂/礼服厂/蕾丝加工厂",
+  "location": "详细地址",
+  "region": "苏州虎丘/潮州/六安/广州",
+  "employee_count": "人数规模",
+  "contact_phone": "联系电话",
+  "contact_email": "联系邮箱",
+  "website": "公司网站",
+  "business_scope": "主营业务",
+  "intent_signals": [
+    "意向信号1",
+    "意向信号2"
+  ],
+  "decision_maker_role": "决策人角色",
+  "priority_score": 0,
+  "priority_level": "hot/warm/cold",
+  "notes": "备注信息",
+  "last_activity": "最后活跃时间",
+  "source_url": "信息来源URL"
+}

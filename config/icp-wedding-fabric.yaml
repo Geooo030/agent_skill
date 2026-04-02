@@ -1,0 +1,160 @@
+# ICP: 婚纱成品/蕾丝加工厂采购决策者
+# 用于 lead-hunter 线索挖掘
+
+name: "wedding-garment-lace-manufacturer"
+description: "婚纱成品厂、蕾丝加工厂、婚纱礼服工作室的采购负责人/老板"
+
+# ═══════════════════════════════════════════════════════════════
+# 公司画像 (Firmographics)
+# ═══════════════════════════════════════════════════════════════
+
+company:
+  # 行业定位
+  industries:
+    include:
+      - wedding-dress-manufacturing    # 婚纱制造
+      - bridal-gown-production        # 婚礼服生产
+      - lace-fabric-processing         # 蕾丝加工
+      - garment-manufacturing         # 服装制造
+      - textile-wholesale              # 纺织品批发
+      - bridal-studio                  # 婚纱工作室
+      - wedding-apparel                # 婚庆服装
+    keywords:
+      - 婚纱
+      - 婚纱礼服
+      - 蕾丝
+      - 婚纱厂
+      - 婚纱定制
+      - 婚纱工作室
+      - bridal
+      - wedding dress
+      - lace fabric
+      - bridal gown
+      
+  # 公司规模 (人数)
+  employee_range:
+    min: 5              # 小型工作室
+    max: 300            # 大型工厂
+    
+  # 地理位置 - 国内为主
+  location:
+    focus_regions:
+      - name: 苏州虎丘
+        weight: 30
+        description: 国内最大婚纱产地，1000+商户
+      - name: 广州
+        weight: 20
+        description: 婚纱批发中心，中大布料市场
+      - name: 潮州
+        weight: 20
+        description: 外贸婚纱基地，大型工厂集中
+      - name: 六安
+        weight: 15
+        description: 新兴婚纱产业带，劳动力成本低
+      - name: 厦门
+        weight: 10
+        description: 高端婚纱定制
+      - name: 深圳
+        weight: 10
+        description: 高端定制，外贸
+    countries:
+      - China
+      - Vietnam          # 越南也有婚纱制造业
+      - India            # 印度婚纱制造
+      
+  # 业务信号
+  business_signals:
+    positive:
+      - 批量采购需求      # 需要批量布料
+      - OEM/ODM 业务     # 代工生产，量大
+      - 外贸出口         # 出口业务稳定
+      - 电商销售         # 淘宝/抖音/1688 有店
+      - 新品开发         # 在开发新款
+    strong_buy_signals:
+      - 招聘采购专员
+      - 扩大生产线
+      - 新厂房/新仓库
+      - 参加婚纱展会
+      - 采购询价记录
+
+# ═══════════════════════════════════════════════════════════════
+# 关键人画像 (Demographics)
+# ═══════════════════════════════════════════════════════════════
+
+person:
+  # 职位头衔
+  titles:
+    include:
+      - 厂长
+      - 总经理
+      - 老板
+      - 采购经理
+      - 采购主管
+      - 面料采购
+      - 供应链经理
+      - 生产经理
+      - 业务经理
+      - founder
+      - owner
+      - general manager
+      - sourcing manager
+      - production manager
+      
+  # 部门
+  department:
+    include:
+      - 采购部
+      - 生产部
+      - 业务部
+      - 供应链
+      
+  # 决策权信号
+  decision_signals:
+    - 公司主页有联系方式
+    - 社媒有采购询价
+    - 发布过采购信息
+    - 参加过展会
+
+# ═══════════════════════════════════════════════════════════════
+# 意向信号 (Intent Signals)
+# ═══════════════════════════════════════════════════════════════
+
+intent_signals:
+  # 强信号 - 高意向客户
+  strong_signals:
+    - 发布采购信息: ["婚纱布料", "蕾丝面料", "婚纱面料", "批量"]
+    - 招聘岗位: ["采购", "面料采购", "供应链"]
+    - 社媒内容: ["寻找面料供应商", "婚纱布料采购", "蕾丝批发"]
+    - 展会参与: ["婚纱展", "面料展", "服装展"]
+    - 电商平台: ["1688采购", "面料询价"]
+    
+  # 中等信号
+  medium_signals:
+    - 公司动态: ["扩产", "新品开发", "旺季备货"]
+    - 社媒发布: ["新款婚纱", "婚纱设计", "礼服制作"]
+    - 行业互动: ["婚纱圈互动", "面料相关评论"]
+    
+  # 时机信号
+  timing_signals:
+    - 婚纱旺季前: ["3-5月", "8-10月"]   # 婚纱旺季前1-2月备货
+    - 展会后: 30d                          # 展会后30天
+    - 新品发布: 60d                        # 发布新品后60天
+    - 招聘采购: 90d                        # 招聘采购人员后90天
+
+# ═══════════════════════════════════════════════════════════════
+# 评分权重
+# ═══════════════════════════════════════════════════════════════
+
+scoring:
+  weights:
+    industry_match: 25          # 行业匹配度
+    location_match: 20          # 地理位置匹配 (苏州/广州等)
+    company_size: 15            # 公司规模适中
+    intent_signals: 25          # 采购意向信号
+    activity_level: 15           # 活跃度 (最近有动态)
+    
+  thresholds:
+    hot: 70              # >= 70 高优先级客户
+    warm: 50             # 50-69 中等优先级
+    cold: 30             # 30-49 可跟进
+    discard: 30          # < 30 放弃
