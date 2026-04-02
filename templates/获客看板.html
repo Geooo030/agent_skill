@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>婚纱获客看板</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 30px;
+        }
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+        .stat-card {
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(10px);
+            padding: 20px 40px;
+            border-radius: 15px;
+            text-align: center;
+            color: white;
+        }
+        .stat-card .number {
+            font-size: 2rem;
+            font-weight: bold;
+        }
+        .stat-card .label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+        .filters {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+        .filter-btn {
+            background: rgba(255,255,255,0.2);
+            border: none;
+            color: white;
+            padding: 10px 25px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+        .filter-btn:hover, .filter-btn.active {
+            background: white;
+            color: #764ba2;
+        }
+        .kanban {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 20px;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+        .card {
+            background: white;
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+        }
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+        }
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+        .company-name {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #333;
+            flex: 1;
+        }
+        .score {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+        .company-type {
+            display: inline-block;
+            background: #f0f0f0;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            color: #666;
+            margin-bottom: 10px;
+        }
+        .location {
+            color: #888;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .location::before {
+            content: '📍';
+        }
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+        .contact-item {
+            font-size: 0.9rem;
+            color: #555;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .contact-item .icon {
+            width: 20px;
+            text-align: center;
+        }
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 15px;
+        }
+        .tag {
+            background: linear-gradient(135deg, #667eea20, #764ba220);
+            color: #764ba2;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(5px);
+            z-index: 1000;
+            overflow-y: auto;
+            padding: 20px;
+        }
+        .modal.active {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+        }
+        .modal-content {
+            background: white;
+            border-radius: 25px;
+            max-width: 900px;
+            width: 100%;
+            margin: 20px auto;
+            position: relative;
+            animation: slideUp 0.3s ease;
+        }
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .modal-header {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            padding: 30px;
+            border-radius: 25px 25px 0 0;
+            color: white;
+        }
+        .modal-header h2 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+        .modal-header .meta {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            opacity: 0.9;
+        }
+        .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255,255,255,0.2);
+            border: none;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .close-btn:hover {
+            background: rgba(255,255,255,0.3);
+            transform: rotate(90deg);
+        }
+        .modal-body {
+            padding: 30px;
+        }
+        .section {
+            margin-bottom: 25px;
+        }
+        .section-title {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 10px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #667eea;
+            display: inline-block;
+        }
+        .section-content {
+            color: #555;
+            line-height: 1.8;
+            white-space: pre-wrap;
+        }
+        .scripts-container {
+            display: grid;
+            gap: 15px;
+        }
+        .script-card {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 15px;
+            border-left: 4px solid #667eea;
+        }
+        .script-card .label {
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+        }
+        .script-card .content {
+            color: #444;
+            line-height: 1.6;
+        }
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+        .info-item {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 12px;
+        }
+        .info-item .label {
+            font-size: 0.85rem;
+            color: #888;
+            margin-bottom: 5px;
+        }
+        .info-item .value {
+            font-weight: 600;
+            color: #333;
+        }
+        .priority-high {
+            border-left: 5px solid #e74c3c;
+        }
+        .priority-medium {
+            border-left: 5px solid #f39c12;
+        }
+        .priority-low {
+            border-left: 5px solid #27ae60;
+        }
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.8rem;
+            }
+            .kanban {
+                grid-template-columns: 1fr;
+            }
+            .modal-content {
+                margin: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>婚纱获客看板</h1>
+        <p>高优先级潜在客户联系策略管理</p>
+    </div>
+    
+    <div class="stats">
+        <div class="stat-card">
+            <div class="number" id="total-count">0</div>
+            <div class="label">总客户数</div>
+        </div>
+        <div class="stat-card">
+            <div class="number" id="avg-score">0</div>
+            <div class="label">平均评分</div>
+        </div>
+        <div class="stat-card">
+            <div class="number" id="high-priority">0</div>
+            <div class="label">高优先级</div>
+        </div>
+    </div>
+    
+    <div class="filters">
+        <button class="filter-btn active" data-filter="all">全部</button>
+        <button class="filter-btn" data-filter="苏州">苏州</button>
+        <button class="filter-btn" data-filter="潮州">潮州</button>
+        <button class="filter-btn" data-filter="六安">六安</button>
+        <button class="filter-btn" data-filter="high">高优先级</button>
+    </div>
+    
+    <div class="kanban" id="kanban"></div>
+    
+    <div class="modal" id="modal">
+        <div class="modal-content">
+            <button class="close-btn" onclick="closeModal()">&times;</button>
+            <div class="modal-header">
+                <h2 id="modal-title"></h2>
+                <div class="meta">
+                    <span id="modal-type"></span>
+                    <span id="modal-location"></span>
+                    <span id="modal-score"></span>
+                </div>
+            </div>
+            <div class="modal-body" id="modal-body"></div>
+        </div>
+    </div>
+
+    <script>
+        const companies = [
+            {
+                name: "苏州虎丘婚纱投资有限公司",
+                type: "婚纱产业投资/市场运营",
+                location: "苏州市姑苏区虎阜路999号虎丘婚纱城4幢4层",
+                phone: "0512-65318776",
+                email: "qhsc2010@126.com",
+                decisionMaker: "总经理/采购负责人",
+                score: 85,
+                whyGood: "1. 虎丘婚纱城运营方管理300+入驻商户\n2. 近期有C区综合改造工程正在招商\n3. 可推荐入驻商户采购蕾丝面料\n4. 2026年3月刚完成商标注册品牌升级中",
+                valueProp: "1. 为入驻商户提供优质蕾丝面料供应链资源\n2. 批量采购优惠支持婚纱城整体竞争力\n3. 稳定供货保障婚纱城商户生产需求",
+                strategy: "1. 首次联系建议以\"婚纱城商户面料供应链合作\"为主题\n2. 提供入驻商户批量采购优惠方案\n3. 可申请成为婚纱城推荐供应商\n4. 建议实地拜访带样品展示",
+                script1: "您好我是XX婚纱布料厂的想和贵方洽谈婚纱城商户面料供应合作我们有苏州本地优质蕾丝面料源头工厂...",
+                script2: "虎丘婚纱城目前有300多家商户入驻我们希望能为这些商户提供稳定的蕾丝面料供应...",
+                script3: "我们可以为婚纱城入驻商户提供批量采购优惠和新品面料优先供应...",
+                bestTime: "工作日上午9-11点",
+                followUp: "首次联系后3天跟进一次然后每周跟进",
+                notes: ""
+            },
+            {
+                name: "花嫁新娘工厂店",
+                type: "婚纱工厂店",
+                location: "苏州市姑苏区虎阜路999号虎丘婚纱城F4",
+                phone: "13771817789",
+                email: "",
+                decisionMaker: "店长/老板",
+                score: 78,
+                whyGood: "1. 工厂店模式直接面向消费者\n2. 位于虎丘婚纱城核心位置\n3. 婚纱定制需要大量蕾丝面料\n4. 直接决策链短便于合作",
+                valueProp: "1. 提供多款婚纱蕾丝面料样品选择\n2. 快速响应小批量定制需求\n3. 苏州本地供货物流成本低",
+                strategy: "1. 直接电话或上门拜访\n2. 带蕾丝面料样品册展示\n3. 了解其主打的婚纱款式推荐匹配面料\n4. 首单优惠建立合作信任",
+                script1: "您好看到贵店在虎丘婚纱城的婚纱定制业务很专业我是做婚纱蕾丝面料源头工厂的想给您送些样品参考...",
+                script2: "我们有多款2026春夏新款蕾丝面料很适合您店里婚纱定制的需求...",
+                script3: "首单可以给您优惠您可以先拿样看看品质...",
+                bestTime: "旺季前1-2月(3-4月/8-9月)",
+                followUp: "首次联系后2天跟进样品反馈",
+                notes: ""
+            },
+            {
+                name: "苏州市伊见钟情婚纱礼服厂",
+                type: "婚纱礼服制造厂",
+                location: "苏州市虎丘婚纱基地8楼",
+                phone: "",
+                email: "",
+                decisionMaker: "厂长/陈光江（法定代表人）",
+                score: 75,
+                whyGood: "1. 50人规模典型婚纱制造厂\n2. 主营婚纱晚装礼服手套\n3. 生产加工模式稳定采购需求\n4. 位于虎丘婚纱产业核心区",
+                valueProp: "1. 提供稳定的婚纱蕾丝面料供应\n2. 支持多种蕾丝款式满足不同婚纱设计\n3. 批量价格优惠提升其利润空间",
+                strategy: "1. 查找法定代表人陈光江联系方式\n2. 以工厂对工厂的方式洽谈\n3. 强调源头工厂价格优势\n4. 提供免费样品寄送",
+                script1: "您好我是苏州本地婚纱蕾丝面料源头工厂听说贵厂婚纱制作专业想和您聊聊面料供应合作...",
+                script2: "我们有多种婚纱蕾丝面料现货可以满足您不同款式婚纱的制作需求...",
+                script3: "作为源头工厂价格有优势可以先寄样给您看看品质...",
+                bestTime: "工作日上午",
+                followUp: "首次联系后3天跟进",
+                notes: ""
+            },
+            {
+                name: "蒂芙妮婚纱礼服厂",
+                type: "婚纱礼服制造厂",
+                location: "苏州市虎丘虎埠路工业园1号",
+                phone: "",
+                email: "",
+                decisionMaker: "厂长/总经理",
+                score: 72,
+                whyGood: "1. 成立于2006年苏州老牌婚纱厂\n2. 设计研发制作营销一条龙\n3. 主营婚纱礼服旗袍晚礼服\n4. 蕾丝面料需求稳定且多样",
+                valueProp: "1. 提供婚纱礼服旗袍多种蕾丝面料\n2. 支持其设计研发提供新品面料\n3. 稳定供货保障其生产节奏",
+                strategy: "1. 以供应商身份联系采购部门\n2. 了解其当前蕾丝面料供应商情况\n3. 提供差异化产品或价格优势\n4. 可考虑长期合作框架协议",
+                script1: "您好了解到贵司在婚纱礼服领域深耕多年我们专注婚纱蕾丝面料想看看有没有合作机会...",
+                script2: "我们2026年有多款新品蕾丝面料很适合您的新品开发需求...",
+                script3: "作为源头工厂可以给您更稳定的价格和供货保障...",
+                bestTime: "工作日",
+                followUp: "首次联系后3-5天跟进",
+                notes: ""
+            },
+            {
+                name: "潮州市吉利工艺实业有限公司",
+                type: "婚纱晚礼服制造厂",
+                location: "潮州市",
+                phone: "",
+                email: "",
+                website: "http://www.jilifashion.com/",
+                decisionMaker: "总经理/采购经理",
+                score: 82,
+                whyGood: "1. 成立于1984年潮州老牌大型婚纱厂\n2. 300人规模自建厂房10000平米\n3. 外贸婚纱礼服为主订单量大\n4. 传统手钩刺绣梭织珠绣技艺\n5. 蕾丝面料需求稳定且量大",
+                valueProp: "1. 提供外贸婚纱高端蕾丝面料\n2. 大批量供货能力匹配其产能\n3. 支持定制蕾丝花型满足外贸需求\n4. 稳定品质保障外贸订单交付",
+                strategy: "1. 通过官网联系或实地拜访\n2. 强调外贸婚纱蕾丝面料专业供应\n3. 提供样品和大货报价单\n4. 可洽谈长期战略合作",
+                script1: "您好了解到贵司是潮州外贸婚纱的龙头企业我们专注高品质婚纱蕾丝面料想探讨合作机会...",
+                script2: "我们有多款外贸婚纱专用蕾丝面料品质稳定适合欧美市场...",
+                script3: "可以安排寄样给您参考我们支持大批量订单和定制花型...",
+                bestTime: "工作日",
+                followUp: "首次联系后5-7天跟进大型企业决策周期长",
+                notes: ""
+            },
+            {
+                name: "潮州市琳岱时装有限公司",
+                type: "婚纱晚礼服制造厂",
+                location: "潮州市",
+                phone: "",
+                email: "",
+                decisionMaker: "总经理/采购经理",
+                score: 75,
+                whyGood: "1. 外贸婚纱礼服主打海外市场\n2. 传统手工艺+现代机械设备\n3. 主营外贸连衣裙婚纱礼服晚礼服\n4. 蕾丝面料需求量大",
+                valueProp: "1. 提供外贸婚纱蕾丝面料\n2. 支持小批量快速打样\n3. 多种蕾丝款式满足不同市场需求",
+                strategy: "1. 联系其外贸或采购部门\n2. 强调外贸婚纱面料供应经验\n3. 提供快速打样服务\n4. 样品+报价一起发送",
+                script1: "您好了解到贵司做外贸婚纱礼服我们专注高品质蕾丝面料很适合外贸订单...",
+                script2: "我们有多款蕾丝面料适合欧美市场风格支持快速打样...",
+                script3: "可以寄样品给您参考价格有竞争力...",
+                bestTime: "工作日",
+                followUp: "首次联系后3-5天跟进",
+                notes: ""
+            },
+            {
+                name: "Suzhou Jusere Wedding & Evening Dress Co Ltd（苏州觉奢婚纱礼服）",
+                type: "婚纱礼服外贸制造",
+                location: "苏州市",
+                phone: "",
+                email: "",
+                decisionMaker: "总经理/外贸经理",
+                score: 72,
+                whyGood: "1. 阿里巴巴国际站商家外贸婚纱\n2. 主营婚纱晚礼服舞会礼服新娘礼服\n3. 国际订单量大\n4. 需要稳定蕾丝面料供应",
+                valueProp: "1. 提供外贸婚纱蕾丝面料\n2. 支持小批量试单和大批量供货\n3. 品质稳定适合国际市场\n4. 价格竞争力强",
+                strategy: "1. 通过阿里国际站联系\n2. 强调外贸婚纱面料供应专业\n3. 提供符合国际标准的蕾丝面料\n4. 样品+大货报价",
+                script1: "您好在阿里国际站看到贵司外贸婚纱业务很好我们专注外贸婚纱蕾丝面料供应...",
+                script2: "我们的蕾丝面料符合国际标准适合欧美市场...",
+                script3: "可以先给您寄样品看看品质我们支持小批量试单...",
+                bestTime: "工作日",
+                followUp: "首次联系后3天跟进",
+                notes: ""
+            },
+            {
+                name: "六安新旗婚纱礼服有限公司",
+                type: "婚纱礼服制造",
+                location: "六安市",
+                phone: "184****7174",
+                email: "",
+                decisionMaker: "总经理/采购经理",
+                score: 70,
+                whyGood: "1. 六安婚纱产业带新兴企业\n2. 六安是新兴婚纱制造基地\n3. 劳动力成本低于苏州\n4. 需要采购婚纱面料",
+                valueProp: "1. 提供优质婚纱蕾丝面料\n2. 苏州品质六安价格优势\n3. 物流配送支持\n4. 新客户优惠",
+                strategy: "1. 电话直接联系\n2. 强调婚纱蕾丝面料源头工厂\n3. 提供新客户优惠吸引合作\n4. 了解其采购需求量",
+                script1: "您好我是婚纱蕾丝面料源头工厂想和贵司聊聊面料供应合作...",
+                script2: "我们有多款婚纱蕾丝面料现货价格有竞争力可以先寄样...",
+                script3: "新客户首单有优惠支持小批量起订...",
+                bestTime: "工作日",
+                followUp: "首次联系后2天跟进",
+                notes: ""
+            },
+            {
+                name: "六安美薇新娘婚纱礼服有限公司",
+                type: "婚纱礼服制造",
+                location: "六安市",
+                phone: "181****3514",
+                email: "",
+                decisionMaker: "总经理/采购经理",
+                score: 70,
+                whyGood: "1. 六安婚纱产业带企业\n2. 新兴婚纱生产基地\n3. 采购需求稳定\n4. 决策链相对简单",
+                valueProp: "1. 提供稳定婚纱蕾丝面料供应\n2. 价格优惠提升其利润\n3. 快速响应需求",
+                strategy: "1. 电话直接联系\n2. 了解其婚纱款式和面料需求\n3. 提供样品和报价\n4. 建立长期合作关系",
+                script1: "您好我是婚纱蕾丝面料厂想和贵司合作...",
+                script2: "我们有多款婚纱蕾丝面料价格优惠品质稳定...",
+                script3: "可以先寄样品给您看看...",
+                bestTime: "工作日",
+                followUp: "首次联系后2天跟进",
+                notes: ""
+            }
+        ];
+
+        function getPriorityClass(score) {
+            if (score >= 80) return 'priority-high';
+            if (score >= 70) return 'priority-medium';
+            return 'priority-low';
+        }
+
+        function renderCards(filter = 'all') {
+            const kanban = document.getElementById('kanban');
+            let filtered = companies;
+            
+            if (filter === '苏州') {
+                filtered = companies.filter(c => c.location.includes('苏州'));
+            } else if (filter === '潮州') {
+                filtered = companies.filter(c => c.location.includes('潮州'));
+            } else if (filter === '六安') {
+                filtered = companies.filter(c => c.location.includes('六安'));
+            } else if (filter === 'high') {
+                filtered = companies.filter(c => c.score >= 80);
+            }
+            
+            kanban.innerHTML = filtered.map((company, index) => `
+                <div class="card ${getPriorityClass(company.score)}" onclick="openModal(${companies.indexOf(company)})">
+                    <div class="card-header">
+                        <div class="company-name">${company.name}</div>
+                        <div class="score">${company.score}</div>
+                    </div>
+                    <div class="company-type">${company.type}</div>
+                    <div class="location">${company.location}</div>
+                    <div class="contact-info">
+                        ${company.phone ? `<div class="contact-item"><span class="icon">📞</span>${company.phone}</div>` : ''}
+                        ${company.email ? `<div class="contact-item"><span class="icon">📧</span>${company.email}</div>` : ''}
+                        <div class="contact-item"><span class="icon">👤</span>${company.decisionMaker}</div>
+                    </div>
+                    <div class="tags">
+                        <span class="tag">${company.bestTime}</span>
+                    </div>
+                </div>
+            `).join('');
+            
+            updateStats(filtered);
+        }
+
+        function updateStats(filtered) {
+            document.getElementById('total-count').textContent = filtered.length;
+            const avgScore = Math.round(filtered.reduce((sum, c) => sum + c.score, 0) / filtered.length);
+            document.getElementById('avg-score').textContent = avgScore;
+            document.getElementById('high-priority').textContent = filtered.filter(c => c.score >= 80).length;
+        }
+
+        function openModal(index) {
+            const company = companies[index];
+            const modal = document.getElementById('modal');
+            
+            document.getElementById('modal-title').textContent = company.name;
+            document.getElementById('modal-type').textContent = company.type;
+            document.getElementById('modal-location').textContent = '📍 ' + company.location;
+            document.getElementById('modal-score').textContent = '优先评分: ' + company.score;
+            
+            document.getElementById('modal-body').innerHTML = `
+                <div class="info-grid">
+                    <div class="info-item">
+                        <div class="label">联系电话</div>
+                        <div class="value">${company.phone || '暂无'}</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="label">联系邮箱</div>
+                        <div class="value">${company.email || '暂无'}</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="label">决策人角色</div>
+                        <div class="value">${company.decisionMaker}</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="label">最佳联系时间</div>
+                        <div class="value">${company.bestTime}</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="label">跟进频率</div>
+                        <div class="value">${company.followUp}</div>
+                    </div>
+                    ${company.website ? `
+                    <div class="info-item">
+                        <div class="label">公司网站</div>
+                        <div class="value"><a href="${company.website}" target="_blank">${company.website}</a></div>
+                    </div>
+                    ` : ''}
+                </div>
+                
+                <div class="section">
+                    <div class="section-title">为什么是好客户</div>
+                    <div class="section-content">${company.whyGood}</div>
+                </div>
+                
+                <div class="section">
+                    <div class="section-title">价值主张</div>
+                    <div class="section-content">${company.valueProp}</div>
+                </div>
+                
+                <div class="section">
+                    <div class="section-title">联系策略</div>
+                    <div class="section-content">${company.strategy}</div>
+                </div>
+                
+                <div class="section">
+                    <div class="section-title">开场白话术</div>
+                    <div class="scripts-container">
+                        <div class="script-card">
+                            <div class="label">开场白 1</div>
+                            <div class="content">${company.script1}</div>
+                        </div>
+                        <div class="script-card">
+                            <div class="label">开场白 2</div>
+                            <div class="content">${company.script2}</div>
+                        </div>
+                        <div class="script-card">
+                            <div class="label">开场白 3</div>
+                            <div class="content">${company.script3}</div>
+                        </div>
+                    </div>
+                </div>
+                
+                ${company.notes ? `
+                <div class="section">
+                    <div class="section-title">备注</div>
+                    <div class="section-content">${company.notes}</div>
+                </div>
+                ` : ''}
+            `;
+            
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            document.getElementById('modal').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        document.getElementById('modal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+        });
+
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                renderCards(this.dataset.filter);
+            });
+        });
+
+        renderCards();
+    </script>
+</body>
+</html>
