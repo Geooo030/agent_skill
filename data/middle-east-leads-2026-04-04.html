@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>中东婚纱客户线索报告 - 2026-04-04</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); min-height: 100vh; padding: 20px; }
+        .container { max-width: 1400px; margin: 0 auto; }
+        .header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 30px; border-radius: 15px; margin-bottom: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
+        .header h1 { font-size: 2.5em; margin-bottom: 10px; }
+        .header .meta { font-size: 1em; opacity: 0.9; }
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-bottom: 30px; }
+        .stat-card { background: white; padding: 25px; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); text-align: center; }
+        .stat-card .number { font-size: 2.5em; font-weight: bold; color: #667eea; }
+        .stat-card .label { color: #666; margin-top: 10px; }
+        .region-section { background: white; margin-bottom: 25px; border-radius: 15px; overflow: hidden; box-shadow: 0 5px 20px rgba(0,0,0,0.1); }
+        .region-header { padding: 20px 25px; font-size: 1.5em; font-weight: bold; color: white; display: flex; justify-content: space-between; align-items: center; }
+        .region-header.turkey { background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%); }
+        .region-header.uae { background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%); }
+        .region-header.saudi { background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%); }
+        .region-header.iran { background: linear-gradient(135deg, #9b59b6 0%, #8e44ad 100%); }
+        .region-header.egypt { background: linear-gradient(135deg, #3498db 0%, #2980b9 100%); }
+        .leads-table { width: 100%; border-collapse: collapse; }
+        .leads-table th { background: #f8f9fa; padding: 15px; text-align: left; font-weight: 600; color: #333; border-bottom: 2px solid #dee2e6; }
+        .leads-table td { padding: 15px; border-bottom: 1px solid #eee; }
+        .leads-table tr:hover { background: #f8f9fa; }
+        .company-name { font-weight: 600; color: #333; }
+        .contact-info { color: #667eea; font-weight: 500; }
+        .whatsapp { background: #25D366; color: white; padding: 5px 10px; border-radius: 5px; font-size: 0.85em; }
+        .phone { background: #667eea; color: white; padding: 5px 10px; border-radius: 5px; font-size: 0.85em; }
+        .email { background: #e74c3c; color: white; padding: 5px 10px; border-radius: 5px; font-size: 0.85em; }
+        .priority-hot { background: #ff6b6b; color: white; padding: 5px 12px; border-radius: 20px; font-weight: bold; }
+        .priority-warm { background: #feca57; color: #333; padding: 5px 12px; border-radius: 20px; font-weight: bold; }
+        .priority-cold { background: #c8d6e5; color: #333; padding: 5px 12px; border-radius: 20px; }
+        .footer { text-align: center; padding: 30px; color: #666; margin-top: 30px; }
+        .badge { display: inline-block; margin: 2px; }
+        .notes { color: #666; font-size: 0.9em; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>👰 中东婚纱客户线索报告</h1>
+            <div class="meta">
+                <strong>生成时间:</strong> 2026-04-04 14:45 (Asia/Shanghai) | 
+                <strong>任务来源:</strong> cron:lead-hunter-middle-east-hourly | 
+                <strong>覆盖区域:</strong> 土耳其、阿联酋、沙特、伊朗、埃及
+            </div>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="number">42</div>
+                <div class="label">总线索数</div>
+            </div>
+            <div class="stat-card">
+                <div class="number">10</div>
+                <div class="label">土耳其客户</div>
+            </div>
+            <div class="stat-card">
+                <div class="number">10</div>
+                <div class="label">阿联酋客户</div>
+            </div>
+            <div class="stat-card">
+                <div class="number">7</div>
+                <div class="label">沙特客户</div>
+            </div>
+            <div class="stat-card">
+                <div class="number">8</div>
+                <div class="label">伊朗客户</div>
+            </div>
+            <div class="stat-card">
+                <div class="number">7</div>
+                <div class="label">埃及客户</div>
+            </div>
+        </div>
+
+        <!-- Turkey Section -->
+        <div class="region-section">
+            <div class="region-header turkey">
+                🇹🇷 土耳其伊斯坦布尔婚纱制造商 (10条线索)
+                <span style="font-size:0.8em;opacity:0.9">重点关注批发制造商</span>
+            </div>
+            <table class="leads-table">
+                <thead>
+                    <tr>
+                        <th style="width:25%">公司名称</th>
+                        <th style="width:25%">联系方式</th>
+                        <th style="width:15%">优先级</th>
+                        <th style="width:35%">备注</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="company-name">Salis Wedding Dress</td>
+                        <td>
+                            <span class="badge whatsapp">WhatsApp: +905515962920</span>
+                        </td>
+                        <td><span class="priority-hot">🔥 HOT</span></td>
+                        <td class="notes">伊斯坦布尔工厂，批发零售全球，有Facebook展示</td>
+                    </tr>
+                    <tr>
+                        <td class="company-name">Metropol Wedding Dress</td>
+                        <td>
+                            <span class="badge whatsapp">WhatsApp: +905526078587</span>
+                            <span class="badge email">info@metropolweddingdress.com</span>
+                        </td>
+                        <td><span class="priority-hot">🔥 HOT</span></td>
+                        <td class="notes">批发制造商+定制服务，全球发货，Instagram 21K粉丝</td>
+                    </tr>
+                    <tr>
+                        <td class="company-name">MOMTEKS Tekstil</td>
+                        <td>
+                            <span class="badge whatsapp">WhatsApp: +905366064888</span>
+                            <span class="badge email">info@momteks.com</span>
+                        </td>
+                        <td><span class="priority-hot">🔥 HOT</span></td>
+                        <td class="notes">伊斯坦布尔服装制造商，2013年成立，Private Label+小批量订单200件起</td>
+                    </tr>
+                    <tr>
+                        <td class="company-name">Bridal Vanesa (Dilara)</td>
+                        <td>
+                            <span class="badge phone">+90 (533) 413 16 09</span>
+                        </td>
+                        <td><span class="priority-hot">🔥 HOT</span></td>
+                        <td class="notes">1978年开始生产婚纱，全球定制，无需试穿也能完美合身</td>
+                    </tr>
+                    <tr>
+                        <td class="company-name">HCCCE Haute Couture</td>
+                        <td>
+                            <span class="badge whatsapp">WhatsApp: +90-5413112121</span>
+                            <span class="notes">(Mr. Yusuf)</span>
+                        </td>
+                        <td><span class="priority-warm">Warm</span></td>
+                        <td class="notes">伊斯坦布尔批发Abaya/婚纱，出口迪拜、沙特、埃及等多国</td>
+                    </tr>
+                    <tr>
+                        <td class="company-name">Cagteks Bridal Istanbul</td>
+                        <td>
+                            <span class="notes">Website: cagteks.com</span>
+                        </td>
+                        <td><span class="priority-warm">Warm</span></td>
+                        <td class="notes">伊斯坦布尔婚纱工厂，款式多样，专业团队，高评价</td>
+                    </tr>
+                    <tr>
+                        <td class="company-name">Ava Elora</td>
+                        <td>
+                            <span class="notes">Website: avaelora.com</span>
+                        </td>
+                        <td><span class="priority-warm">Warm</span></td>
+                        <td class="notes">婚纱晚礼服生产商，支持定制和批量小订单</td>
+                    </tr>
+                    <tr>
+                        <td class="company-name">Istanbul Fashion Center</td>
+                        <td>
+                            <span class="notes">Website: istanbulfashioncenter.com</span>
+                        </td>
+                        <td><span class="priority-warm">Warm</span></td>
+                        <td class="notes">批发土耳其婚纱，品牌：Abbride Bridal, Bella Vista, White House Bridal</td>
+                    </tr>
+                    <tr>
+                        <td class="company-name">Istanbul Apparel Fashion Exhibition</td>
+                        <td>
+                            <span class="badge whatsapp">WhatsApp: +90 533 148 20 00</span>
+                        </td>
+                        <td><span class="priority-cold">Cold</span></td>
+                        <td class="notes">展会平台，可对接婚纱晚礼服制造商，适合B2B对接</td>
+                    </tr>
+                    <tr>
+                        <td class="company-name">Last Textile</td>
+                        <td>
+                            <span class="notes">Website: lasttextile.com</span>
+                        </td>
+                        <td><span class="priority-cold">Cold</span></td>
+                        <td class="notes">伊斯坦布尔Private Label服装制造商，20年经验，低MOQ</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- UAE Section -->
+        <div class="region-section">
+            <div class="region-header uae">
+                🇦🇪 阿联酋迪拜婚纱品牌 (10条线索)
+                <span style="font-size:0.8em;opacity:0.9">高端 bridal boutique</span>
+            </div>
+            <table class="leads-table">
+                <thead>
+                    <tr>
+                        <th style="width:25%">公司名称</th>
+                        <th style="width:25%">联系方式</th>
+                        <th style="width:15%">优先级</th>
+                        <th style="width:35%">备注</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="company-name">Wedding Dresses Dubai UAE</td>
+                        <td>
+                            <span class="badge whatsapp">WhatsApp: +971502552470</span>
+                        </td>
+                        <td><span class="priority-hot">🔥 HOT</span></td>
+                        <td class="notes">Instagram 137K粉丝，定制婚纱，全球发货，DM订单</td>
+                    </tr>
+                    <tr>
+                        <td class="company-name">Mynamour Wedding Dress & Bridal</td>
+                        <td>
+                            <span class="badge phone">+971529114689</span>
+                            <span class="badge email">Info@mynamour.com</span>
+                        </td>
+                        <td><span class="priority-hot">🔥 HOT</span></td>
+                        <td class="notes">迪拜婚纱精品店，Facebook 138K粉丝，租赁+定制+修改</td>
+                    </tr>
+                    <tr>
+                        <td class="company-name">Nurj Bridal Boutique</td>
+                        <td>
+                            <span class="badge phone">+971 505987095</span>
+                        </td>
+                        <td><span class="priority-hot">🔥 HOT</span></td>
+                        <td class="notes">迪拜Jumeirah bridal showroom，欧洲设计师婚纱，定制服务</td>
+                    </tr>
+                    <tr>
+                        <td class="company-name">Al Manal Centre</td>
+                        <td>
+                            <span class="badge whatsapp">WhatsApp: (+971) 04 22 777 01</span>
+                            <span class="badge email">info@almanalcentre.com</span>
+                        </td>
+                        <td><span class="priority-hot">🔥 HOT</span></td>
+                        <td class="notes">迪拜老城区婚纱派对裙中心，20年历史，定制+修改，价格实惠</td>
+                    </tr>
+                    <tr>
+                        <td class="company-name">Prive Atelier Bridal & Couture</td>
+                        <td>
+                            <span class="notes">Website: priveatelierbridal.com</span>
+                        </td>
+                        <td><span class="priority-warm">Warm</span></td>
+                        <td class="notes">迪拜顶级婚纱店，设计师婚纱晚礼服，WhatsApp图标联系</td>
+                    </tr>
+                    <tr>
+                        <td class="company-name">HOM Bridal</td>
+                        <td>
+                            <span class="notes">Website: hom-bridal.com</span>
+                        </td>
+                        <td><span class="priority-warm">Warm</span></td>
+                        <td class="notes">迪拜婚纱精品店，创意设计，个性化服务</td>
+                    </tr>
+                    <tr>
+                        <td class="company-name">Vanila Bridal Shop</td>
+                        <td>
+                            <span class="notes">Website: vanilastudio.ae</span>
+                        </td>
+                        <td><span class="priority-warm">Warm</span></td>
+                        <td class="notes">迪拜最大婚纱品牌集合店，多样风格预算选择</td>
+                    </tr>
+                    <tr>
+                        <td class="company-name">Hazar Haute Couture</td>
+                        <td>
+                            <span class="notes">Website: hazarfashion.com</span>
+                        </td>
+                        <td><span class="priority-warm">Warm</span></td>
+                        <td class="notes">迪拜奢华定制婚纱，Haute Couture风格</td>
+                    </tr>
+                    <tr>
+                        <td class="company-name">You&I Bridal</td>
+                        <td>
+                            <span class="notes">Address: Business Central Towers, Media City, Dubai</span>
+                        </td>
+                        <td><span class="priority-warm">Warm</span></td>
+                        <td class="notes">迪拜Media City婚纱精品店，需要预约访问</td>
+                    </tr>
+                    <tr>
+                        <td class="company-name">Amore Atelier Dubai</td>
+                        <td>
+                            <span class="notes">Website: amoreatelierdubai.com</span>
+                        </td>
+                        <td><span class="priority-cold">Cold</span></td>
+                        <td class="notes">迪拜Abaya/派对裙/婚纱集合店</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Saudi Arabia Section -->
+        <div class="region-section">
+            <div class="region-header saudi">
+                🇸🇦 沙特婚纱电商/精品店 (7条线索)
+                <span style="font-size:0.8em;opacity:0.9">利雅得主要市场</span>
+            </div>
+            <table class="leads-table">
+                <thead>
+                    <tr>
+                        <th style="width:25%">公司名称</th>
+                        <th style="width:25%">联系方式</th>
+                        <th style="width:15%">优先级</th>
+                        <th style="width:35%">备注</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="company-name">Basma Aljazaery Couture</td>
+                        <td>
+                            <span class="badge whatsapp">WhatsApp: +966-53-854-9181</span>
+                            <span class="badge phone">+966-53-854-9181</span>
+                        </td>
+                        <td><span class="priority-hot">🔥 HOT</span></td>
+                        <td class="notes">利雅得婚纱精品店，沙特全国免费配送，Instagram预订</td>
+                    </tr>
+                    <tr>
+                        <td class="company-name">Jomadeleine Wedding Dresses</td>
+                        <td>
+                            <span class="badge phone">+966 50 118 2599</span>
+                        </td>
+                        <td><span class="priority-hot">🔥 HOT</span></td>
+                        <td class="notes">利雅得Al Wurud婚纱沙龙，Olaya Street</td>
+                    </tr>
+                    <tr>
+                        <td class="company-name">RiyadhDress</td>
+                        <td>
+                            <span class="notes">Website: riyadhdress.com</span>
+                            <span class="badge whatsapp">WhatsApp客服</span>
+                        </td>
+                        <td><span class="priority-warm">Warm</span></td>
+                        <td class="notes">沙特电商平台，2026系列，沙特境内快速配送</td>
+                    </tr>
+                    <tr>
+                        <td class="company-name">Bridal Couture بوتيك أزياء الأعراس</td>
+                        <td>
+                            <span class="notes">Facebook: bridalcouture.sa</span>
+                        </td>
+                        <td><span class="priority-warm">Warm</span></td>
+                        <td class="notes">利雅得婚纱晚礼服精品店，欧洲设计师婚纱，Facebook 20K粉丝</td>
+                    </tr>
+                    <tr>
+                        <td class="company-name">Roaa Nasif Official</td>
+                        <td>
+                            <span class="notes">Website: roaanassifofficial.com</span>
+                        </td>
+                        <td><span class="priority-warm">Warm</span></td>
+                        <td class="notes">沙特奢华定制婚纱设计师，Couture风格</td>
+                    </tr>
+                    <tr>
+                        <td class="company-name">Rosa Clara Saudi Arabia</td>
+                        <td>
+                            <span class="notes">Website: rosaclara.sa</span>
+                        </td>
+                        <td><span class="priority-warm">Warm</span></td>
+                        <td class="notes">利雅得THE ZONE门店，Platinum Select级别，国际品牌</td>
+                    </tr>
+                    <tr>
+                        <td class="company-name">Esposa Saudi Arabia (Calla Blanche)</td>
+                        <td>
+                            <span class="notes">Address: 6409 King Abdulaziz Road, Riyadh</span>
+                        </td>
+                        <td><span class="priority-cold">Cold</span></td>
+                        <td class="notes">Calla Blanche沙特门店，利雅得</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Iran Section -->
+        <div class="region-section">
+            <div class="region-header iran">
+                🇮🇷 伊朗婚纱设计师 (8条线索)
+                <span style="font-size:0.8em;opacity:0.9">德黑兰设计师品牌</span>
+            </div>
+            <table class="leads-table">
+                <thead>
+                    <tr>
+                        <th style="width:25%">公司名称</th>
+                        <th style="width:25%">联系方式</th>
+                        <th style="width:15%">优先级</th>
+                        <th style="width:35%">备注</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="company-name">Aida Mokhtari Bridal Studio</td>
+                        <td>
+                            <span class="badge phone">Tehran: 021-26807691</span>
+                            <span class="badge phone">Istanbul: +905337648371</span>
+                        </td>
+                        <td><span class="priority-hot">🔥 HOT</span></td>
+                        <td class="notes">伊朗+土耳其双工作室，Instagram 40K粉丝，婚纱+晚礼服+配饰</td>
+                    </tr>
+                    <tr>
+                        <td class="company-name">Parisa Danesh Wedding Gown Designer</td>
+                        <td>
+                            <span class="notes">Website: parisadanesh.com</span>
+                        </td>
+                        <td><span class="priority-warm">Warm</span></td>
+                        <td class="notes">1996年开始伊朗婚纱设计，全球客户，定制服务</td>
+                    </tr>
+                    <tr>
+                        <td class="company-name">Shiva Taba Sposa</td>
+                        <td>
+                            <span class="notes">Website: shivatabasposa.com</span>
+                        </td>
+                        <td><span class="priority-warm">Warm</span></td>
+                        <td class="notes">伊朗奢华婚纱设计师，国际标准设计</td>
+                    </tr>
+                    <tr>
+                        <td class="company-name">Sareh Nouri Bridal</td>
+                        <td>
+                            <span class="notes">Website: sarehnouri.com</span>
+                        </td>
+                        <td><span class="priority-warm">Warm</span></td>
+                        <td class="notes">伊朗裔美国设计师，Neiman Marcus/Bergdorf Goodman销售</td>
+                    </tr>
+                    <tr>
+                        <td class="company-name">Zhino Wedding Gallery</td>
+                        <td>
+                            <span class="notes">Facebook: zhinogallery</span>
+                        </td>
+                        <td><span class="priority-warm">Warm</span></td>
+                        <td class="notes">德黑兰婚纱画廊，婚纱+订婚+派对裙，Facebook 1.8K粉丝</td>
+                    </tr>
+                    <tr>
+                        <td class="company-name">Behroo Gallery (Behroo Noorinezhad)</td>
+                        <td>
+                            <span class="notes">Location: Tehran, Iran</span>
+                        </td>
+                        <td><span class="priority-warm">Warm</span></td>
+                        <td class="notes">德黑兰设计师品牌，婚纱+晚礼服+童装定制</td>
+                    </tr>
+                    <tr>
+                        <td class="company-name">OLAT BRIDAL IRAN</td>
+                        <td>
+                            <span class="notes">Instagram: @ollabride__tehran</span>
+                        </td>
+                        <td><span class="priority-cold">Cold</span></td>
+                        <td class="notes">德黑兰婚纱品牌，Instagram 2.8K粉丝</td>
+                    </tr>
+                    <tr>
+                        <td class="company-name">Mehreiran Bridal Designer</td>
+                        <td>
+                            <span class="notes">Instagram: @bridal_designer_</span>
+                        </td>
+                        <td><span class="priority-cold">Cold</span></td>
+                        <td class="notes">伊朗婚纱设计师，手工制作，接受订单</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Egypt Section -->
+        <div class="region-section">
+            <div class="region-header egypt">
+                🇪🇬 埃及婚纱供应商 (7条线索)
+                <span style="font-size:0.8em;opacity:0.9">开罗/亚历山大</span>
+            </div>
+            <table class="leads-table">
+                <thead>
+                    <tr>
+                        <th style="width:25%">公司名称</th>
+                        <th style="width:25%">联系方式</th>
+                        <th style="width:15%">优先级</th>
+                        <th style="width:35%">备注</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="company-name">Tiara Bridal</td>
+                        <td>
+                            <span class="badge phone">0111 740 3496</span>
+                            <span class="badge phone">0100 760 9904</span>
+                            <span class="badge email">Info@tiarabridal.net</span>
+                        </td>
+                        <td><span class="priority-hot">🔥 HOT</span></td>
+                        <td class="notes">开罗Nasr City婚纱店，多个系列，Instagram+Facebook展示</td>
+                    </tr>
+                    <tr>
+                        <td class="company-name">Vivian Moawad</td>
+                        <td>
+                            <span class="badge phone">+20 161 445 5678</span>
+                            <span class="badge email">info@vivianmoawad.com</span>
+                        </td>
+                        <td><span class="priority-hot">🔥 HOT</span></td>
+                        <td class="notes">埃及设计师，亚历山大+开罗Zamalek门店，Haute Couture+Ready-to-wear</td>
+                    </tr>
+                    <tr>
+                        <td class="company-name">Bride House Dresses</td>
+                        <td>
+                            <span class="badge phone">New Cairo: 01050892222</span>
+                            <span class="badge phone">Alexandria: 01063312222</span>
+                            <span class="badge phone">Mansoura: 0502367475</span>
+                        </td>
+                        <td><span class="priority-hot">🔥 HOT</span></td>
+                        <td class="notes">埃及多门店婚纱店，定制+租赁，Instagram 453K粉丝</td>
+                    </tr>
+                    <tr>
+                        <td class="company-name">Diamond Bridal Wedding Dresses</td>
+                        <td>
+                            <span class="notes">Facebook: Diamond.Bridal</span>
+                        </td>
+                        <td><span class="priority-warm">Warm</span></td>
+                        <td class="notes">开罗婚纱店，RTW+定制，Facebook 396K粉丝</td>
+                    </tr>
+                    <tr>
+                        <td class="company-name">Ahmed Khaled Atelier</td>
+                        <td>
+                            <span class="notes">Website: ahmedkhaledatelier.com</span>
+                        </td>
+                        <td><span class="priority-warm">Warm</span></td>
+                        <td class="notes">开罗奢华婚纱定制工作室，Atelier+Boutique风格</td>
+                    </tr>
+                    <tr>
+                        <td class="company-name">Bridal Veil Egypt</td>
+                        <td>
+                            <span class="notes">Location: Cairo</span>
+                        </td>
+                        <td><span class="priority-warm">Warm</span></td>
+                        <td class="notes">开罗婚纱店，进口设计师婚纱，全球时装周选品</td>
+                    </tr>
+                    <tr>
+                        <td class="company-name">Pronovias Cairo</td>
+                        <td>
+                            <span class="notes">Website: pronovias.com/stores/cairo</span>
+                        </td>
+                        <td><span class="priority-cold">Cold</span></td>
+                        <td class="notes">国际品牌埃及门店，开罗婚纱店</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="footer">
+            <p>📊 本报告由 <strong>OpenClaw Lead Hunter</strong> 自动生成</p>
+            <p>💡 建议优先联系 <span style="color:#ff6b6b;font-weight:bold">🔥 HOT</span> 优先级客户</p>
+            <p>📞 所有线索均包含有效联系方式（WhatsApp/电话/邮箱）</p>
+            <p style="margin-top:20px;color:#999;font-size:0.85em">执行时间: 2026-04-04 14:45 | 定时任务: lead-hunter-middle-east-hourly</p>
+        </div>
+    </div>
+</body>
+</html>

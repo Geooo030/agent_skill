@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>中东婚纱客户线索报告 - 2026年4月5日</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        .header .subtitle {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .stat-card {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .stat-number {
+            font-size: 3em;
+            font-weight: bold;
+            color: #667eea;
+        }
+        
+        .stat-label {
+            color: #666;
+            font-size: 1em;
+            margin-top: 5px;
+        }
+        
+        .region-section {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 25px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+        
+        .region-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #eee;
+        }
+        
+        .region-flag {
+            font-size: 2.5em;
+        }
+        
+        .region-title {
+            font-size: 1.8em;
+            color: #333;
+        }
+        
+        .region-count {
+            background: #667eea;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+        }
+        
+        .lead-card {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-left: 4px solid;
+            transition: all 0.3s;
+        }
+        
+        .lead-card:hover {
+            background: #f0f0f0;
+            transform: translateX(5px);
+        }
+        
+        .lead-card.hot {
+            border-left-color: #e74c3c;
+        }
+        
+        .lead-card.warm {
+            border-left-color: #f39c12;
+        }
+        
+        .lead-card.cold {
+            border-left-color: #95a5a6;
+        }
+        
+        .lead-name {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 8px;
+        }
+        
+        .lead-type {
+            color: #667eea;
+            font-size: 0.9em;
+            margin-bottom: 10px;
+        }
+        
+        .lead-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 10px;
+        }
+        
+        .detail-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #555;
+            font-size: 0.95em;
+        }
+        
+        .detail-icon {
+            color: #667eea;
+            font-size: 1.1em;
+        }
+        
+        .priority-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 0.85em;
+            font-weight: bold;
+            margin-left: 10px;
+        }
+        
+        .priority-badge.hot {
+            background: #ffe6e6;
+            color: #e74c3c;
+        }
+        
+        .priority-badge.warm {
+            background: #fff5e6;
+            color: #f39c12;
+        }
+        
+        .priority-badge.cold {
+            background: #f0f0f0;
+            color: #95a5a6;
+        }
+        
+        .score-bar {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        
+        .score-number {
+            font-weight: bold;
+            color: #667eea;
+        }
+        
+        .score-visual {
+            height: 8px;
+            background: #ddd;
+            border-radius: 4px;
+            width: 100px;
+            position: relative;
+        }
+        
+        .score-fill {
+            height: 100%;
+            border-radius: 4px;
+            transition: width 0.3s;
+        }
+        
+        .score-fill.hot {
+            background: #e74c3c;
+        }
+        
+        .score-fill.warm {
+            background: #f39c12;
+        }
+        
+        .score-fill.cold {
+            background: #95a5a6;
+        }
+        
+        .contact-link {
+            color: #667eea;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        
+        .contact-link:hover {
+            color: #764ba2;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 30px;
+            color: #666;
+            font-size: 0.9em;
+        }
+        
+        .no-data {
+            background: #fff5f5;
+            border: 2px dashed #e74c3c;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            color: #e74c3c;
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.8em;
+            }
+            
+            .lead-details {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>👰 中东婚纱客户线索报告</h1>
+            <div class="subtitle">土耳其 | 阿联酋 | 伊朗 | 埃及 | 沙特阿拉伯</div>
+            <div class="subtitle" style="margin-top: 10px;">生成时间: 2026年4月5日 04:46 (Asia/Shanghai)</div>
+        </div>
+        
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-number">12</div>
+                <div class="stat-label">总线索数</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">5</div>
+                <div class="stat-label">高优先级 (Hot)</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">5</div>
+                <div class="stat-label">中等优先级 (Warm)</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">2</div>
+                <div class="stat-label">低优先级 (Cold)</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">4</div>
+                <div class="stat-label">覆盖国家</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">10</div>
+                <div class="stat-label">有联系方式</div>
+            </div>
+        </div>
+        
+        <!-- Turkey Section -->
+        <div class="region-section">
+            <div class="region-header">
+                <span class="region-flag">🇹🇷</span>
+                <h2 class="region-title">土耳其 (Turkey) - 伊斯坦布尔婚纱制造商</h2>
+                <span class="region-count">3 条线索</span>
+            </div>
+            
+            <!-- Lead 1: Metropol Wedding Dress -->
+            <div class="lead-card hot">
+                <div class="lead-name">
+                    Metropol Wedding Dress
+                    <span class="priority-badge hot">Hot</span>
+                </div>
+                <div class="lead-type">婚纱批发供应商 | 批发工厂 | 定制婚纱</div>
+                <div class="lead-details">
+                    <div class="detail-item">
+                        <span class="detail-icon">📱</span>
+                        <span>WhatsApp: <a href="https://wa.me/9005526078587" class="contact-link" target="_blank">+90 0552 607 8587</a></span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-icon">📍</span>
+                        <span>Istanbul, Turkey</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-icon">🌐</span>
+                        <span><a href="https://metropolweddingdress.com" class="contact-link" target="_blank">metropolweddingdress.com</a></span>
+                    </div>
+                </div>
+                <div class="score-bar">
+                    <span class="score-number">评分: 85</span>
+                    <div class="score-visual">
+                        <div class="score-fill hot" style="width: 85%"></div>
+                    </div>
+                </div>
+                <div style="margin-top: 10px; color: #666; font-size: 0.9em;">
+                    <strong>意向信号:</strong> 有WhatsApp联系方式, 批发供应商, 支持定制, 明确表达批发业务
+                </div>
+            </div>
+            
+            <!-- Lead 2: Amarya Bridal -->
+            <div class="lead-card hot">
+                <div class="lead-name">
+                    Amarya Bridal
+                    <span class="priority-badge hot">Hot</span>
+                </div>
+                <div class="lead-type">土耳其#1婚纱批发商 | 婚纱晚礼服批发</div>
+                <div class="lead-details">
+                    <div class="detail-item">
+                        <span class="detail-icon">📧</span>
+                        <span>批发部门联系页面</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-icon">📍</span>
+                        <span>Istanbul, Turkey</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-icon">🌐</span>
+                        <span><a href="https://amaryabridal.com/contact-us" class="contact-link" target="_blank">amaryabridal.com</a></span>
+                    </div>
+                </div>
+                <div class="score-bar">
+                    <span class="score-number">评分: 80</span>
+                    <div class="score-visual">
+                        <div class="score-fill hot" style="width: 80%"></div>
+                    </div>
+                </div>
+                <div style="margin-top: 10px; color: #666; font-size: 0.9em;">
+                    <strong>意向信号:</strong> 自称#1批发商, 有专门的批发部门联系页面, 设计师品质, 价格竞争力
+                </div>
+            </div>
+            
+            <!-- Lead 3: Istanbul Fashion Center -->
+            <div class="lead-card warm">
+                <div class="lead-name">
+                    Istanbul Fashion Center
+                    <span class="priority-badge warm">Warm</span>
+                </div>
+                <div class="lead-type">婚纱批发平台 | 多品牌集合 | Abbride/Bella Vista/Biancovita</div>
+                <div class="lead-details">
+                    <div class="detail-item">
+                        <span class="detail-icon">📍</span>
+                        <span>Istanbul, Turkey</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-icon">🌐</span>
+                        <span><a href="https://istanbulfashioncenter.com" class="contact-link" target="_blank">istanbulfashioncenter.com</a></span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-icon">🏷️</span>
+                        <span>批发婚纱 146款</span>
+                    </div>
+                </div>
+                <div class="score-bar">
+                    <span class="score-number">评分: 65</span>
+                    <div class="score-visual">
+                        <div class="score-fill warm" style="width: 65%"></div>
+                    </div>
+                </div>
+                <div style="margin-top: 10px; color: #666; font-size: 0.9em;">
+                    <strong>意向信号:</strong> 批发平台, 多品牌选择, 明确批发业务模式
+                </div>
+            </div>
+        </div>
+        
+        <!-- UAE Section -->
+        <div class="region-section">
+            <div class="region-header">
+                <span class="region-flag">🇦🇪</span>
+                <h2 class="region-title">阿联酋 (UAE) - 迪拜婚纱品牌</h2>
+                <span class="region-count">6 条线索</span>
+            </div>
+            
+            <!-- Lead 4: Nurj Bridal -->
+            <div class="lead-card hot">
+                <div class="lead-name">
+                    Nurj Bridal Boutique
+                    <span class="priority-badge hot">Hot</span>
+                </div>
+                <div class="lead-type">迪拜#1婚纱精品店 | 婚纱礼服 | 欧洲款式</div>
+                <div class="lead-details">
+                    <div class="detail-item">
+                        <span class="detail-icon">📱</span>
+                        <span>电话: <a href="tel:+971505987095" class="contact-link">+971 505 987 095</a></span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-icon">📍</span>
+                        <span>AL MUR RESIDENCE 1, Jumeirah 1, Dubai</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-icon">🌐</span>
+                        <span><a href="https://nurjbridal.com" class="contact-link" target="_blank">nurjbridal.com</a></span>
+                    </div>
+                </div>
+                <div class="score-bar">
+                    <span class="score-number">评分: 85</span>
+                    <div class="score-visual">
+                        <div class="score-fill hot" style="width: 85%"></div>
+                    </div>
+                </div>
+                <div style="margin-top: 10px; color: #666; font-size: 0.9em;">
+                    <strong>意向信号:</strong> 自称迪拜#1, 有明确电话联系方式, 欧洲款式进口, 定制服务
+                </div>
+            </div>
+            
+            <!-- Lead 5: Contessa Bridal -->
+            <div class="lead-card hot">
+                <div class="lead-name">
+                    Contessa Bridal
+                    <span class="priority-badge hot">Hot</span>
+                </div>
+                <div class="lead-type">迪拜奢侈婚纱目的地 | Grace Taylor/Justin Alexander/Morilee代理</div>
+                <div class="lead-details">
+                    <div class="detail-item">
+                        <span class="detail-icon">📱</span>
+                        <span>电话: <a href="tel:+97143439998" class="contact-link">+971 4 343 9998</a></span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-icon">💬</span>
+                        <span>WhatsApp: <a href="https://wa.me/971508851351" class="contact-link" target="_blank">+971 508 851 351</a></span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-icon">📧</span>
+                        <span><a href="mailto:hello@contessabridal.com" class="contact-link">hello@contessabridal.com</a></span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-icon">📍</span>
+                        <span>Villa 82B, Jumeirah St, Jumeirah 1, Dubai</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-icon">🌐</span>
+                        <span><a href="https://www.contessabridal.com" class="contact-link" target="_blank">contessabridal.com</a></span>
+                    </div>
+                </div>
+                <div class="score-bar">
+                    <span class="score-number">评分: 90</span>
+                    <div class="score-visual">
+                        <div class="score-fill hot" style="width: 90%"></div>
+                    </div>
+                </div>
+                <div style="margin-top: 10px; color: #666; font-size: 0.9em;">
+                    <strong>意向信号:</strong> 三种联系方式(电话/WhatsApp/邮箱), 奢侈定位, 多品牌代理, 提供租赁服务, 晚礼服业务
+                </div>
+            </div>
+            
+            <!-- Lead 6: Hazar Haute Couture -->
+            <div class="lead-card warm">
+                <div class="lead-name">
+                    Hazar Haute Couture
+                    <span class="priority-badge warm">Warm</span>
+                </div>
+                <div class="lead-type">45年历史婚纱定制 | GCC皇室客户 | Swarovski水晶 | 欧洲面料</div>
+                <div class="lead-details">
+                    <div class="detail-item">
+                        <span class="detail-icon">📍</span>
+                        <span>Dubai, UAE</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-icon">🌐</span>
+                        <span><a href="https://hazarfashion.com" class="contact-link" target="_blank">hazarfashion.com</a></span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-icon">👑</span>
+                        <span>GCC皇室客户</span>
+                    </div>
+                </div>
+                <div class="score-bar">
+                    <span class="score-number">评分: 70</span>
+                    <div class="score-visual">
+                        <div class="score-fill warm" style="width: 70%"></div>
+                    </div>
+                </div>
+                <div style="margin-top: 10px; color: #666; font-size: 0.9em;">
+                    <strong>意向信号:</strong> 高端定位, 皇室客户背书, 定制服务, 晚礼服业务, 提供租赁
+                </div>
+            </div>
+            
+            <!-- Lead 7: You&I Bridal -->
+            <div class="lead-card warm">
+                <div class="lead-name">
+                    You&I Bridal
+                    <span class="priority-badge warm">Warm</span>
+                </div>
+                <div class="lead-type">婚纱精品店 | 婚纱礼服定制</div>
+                <div class="lead-details">
+                    <div class="detail-item">
+                        <span class="detail-icon">📍</span>
+                        <span>Business Central Towers, Media City, Dubai (Tower B, Level 15, Unit 1507)</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-icon">🌐</span>
+                        <span><a href="https://youandibridal.ae" class="contact-link" target="_blank">youandibridal.ae</a></span>
+                    </div>
+                </div>
+                <div class="score-bar">
+                    <span class="score-number">评分: 60</span>
+                    <div class="score-visual">
+                        <div class="score-fill warm" style="width: 60%"></div>
+                    </div>
+                </div>
+                <div style="margin-top: 10px; color: #666; font-size: 0.9em;">
+                    <strong>意向信号:</strong> 精品店定位, 详细地址, 联系页面有call/whatsapp/email入口
+                </div>
+            </div>
+            
+            <!-- Lead 8: Vanila Bridal Studio -->
+            <div class="lead-card cold">
+                <div class="lead-name">
+                    Vanila Bridal Studio
+                    <span class="priority-badge cold">Cold</span>
+                </div>
+                <div class="lead-type">婚纱精品店 | Milla Nova/Pronovias代理</div>
+                <div class="lead-details">
+                    <div class="detail-item">
+                        <span class="detail-icon">📍</span>
+                        <span>Jumeirah Lakes Towers, Cluster N, JBC4, Ground Floor, Dubai</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-icon">🌐</span>
+                        <span><a href="https://vanilastudio.ae" class="contact-link" target="_blank">vanilastudio.ae</a></span>
+                    </div>
+                </div>
+                <div class="score-bar">
+                    <span class="score-number">评分: 50</span>
+                    <div class="score-visual">
+                        <div class="score-fill cold" style="width: 50%"></div>
+                    </div>
+                </div>
+                <div style="margin-top: 10px; color: #666; font-size: 0.9em;">
+                    <strong>意向信号:</strong> 精品店定位, 多品牌代理, 定制服务, 提供预约功能
+                </div>
+            </div>
+            
+            <!-- Lead 9: Rebekah's Bridal -->
+            <div class="lead-card cold">
+                <div class="lead-name">
+                    Rebekah's Bridal
+                    <span class="priority-badge cold">Cold</span>
+                </div>
+                <div class="lead-type">婚纱礼服店 | Maggie Sottero/Justin Alexander代理 | 10年历史</div>
+                <div class="lead-details">
+                    <div class="detail-item">
+                        <span class="detail-icon">📍</span>
+                        <span>Sheikh Zayed Road, Dubai</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-icon">🌐</span>
+                        <span><a href="https://rebekahsbridal.com" class="contact-link" target="_blank">rebekahsbridal.com</a></span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-icon">👗</span>
+                        <span>300+婚纱款式</span>
+                    </div>
+                </div>
+                <div class="score-bar">
+                    <span class="score-number">评分: 50</span>
+                    <div class="score-visual">
+                        <div class="score-fill cold" style="width: 50%"></div>
+                    </div>
+                </div>
+                <div style="margin-top: 10px; color: #666; font-size: 0.9em;">
+                    <strong>意向信号:</strong> 10年历史, 300+款式, 大型展厅, 免改衣服务
+                </div>
+            </div>
+        </div>
+        
+        <!-- Iran Section -->
+        <div class="region-section">
+            <div class="region-header">
+                <span class="region-flag">🇮🇷</span>
+                <h2 class="region-title">伊朗 (Iran) - 婚纱设计师</h2>
+                <span class="region-count">2 条线索</span>
+            </div>
+            
+            <!-- Lead 10: Parisa Danesh -->
+            <div class="lead-card hot">
+                <div class="lead-name">
+                    Parisa Danesh Wedding Gown Designer
+                    <span class="priority-badge hot">Hot</span>
+                </div>
+                <div class="lead-type">伊朗知名婚纱设计师 | 高端定制婚纱</div>
+                <div class="lead-details">
+                    <div class="detail-item">
+                        <span class="detail-icon">📱</span>
+                        <span>电话: <a href="tel:+984133324986" class="contact-link">+(98) 41-3332-49-86</a></span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-icon">📧</span>
+                        <span><a href="mailto:info@parisadanesh.com" class="contact-link">info@parisadanesh.com</a></span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-icon">📍</span>
+                        <span>No. 122, 12th floor, Aseman Tabriz towers, Sins St., El-Goli rd., Tabriz, Iran</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-icon">🌐</span>
+                        <span><a href="https://parisadanesh.com" class="contact-link" target="_blank">parisadanesh.com</a></span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-icon">🕐</span>
+                        <span>工作时间: Mon-Sat 09:00-17:00 (周五休息)</span>
+                    </div>
+                </div>
+                <div class="score-bar">
+                    <span class="score-number">评分: 85</span>
+                    <div class="score-visual">
+                        <div class="score-fill hot" style="width: 85%"></div>
+                    </div>
+                </div>
+                <div style="margin-top: 10px; color: #666; font-size: 0.9em;">
+                    <strong>意向信号:</strong> 有电话和邮箱, 详细地址, 工作时间明确, 国际知名度, 高端定制
+                </div>
+            </div>
+            
+            <!-- Lead 11: Shiva Taba Sposa -->
+            <div class="lead-card warm">
+                <div class="lead-name">
+                    Shiva Taba Sposa Wedding Dresses
+                    <span class="priority-badge warm">Warm</span>
+                </div>
+                <div class="lead-type">伊朗顶级婚纱设计师 | 豪华定制婚纱 | 国际标准</div>
+                <div class="lead-details">
+                    <div class="detail-item">
+                        <span class="detail-icon">📍</span>
+                        <span>Iran</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-icon">🌐</span>
+                        <span><a href="https://shivatabasposa.com" class="contact-link" target="_blank">shivatabasposa.com</a></span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-icon">✨</span>
+                        <span>精致刺绣 | 高级面料</span>
+                    </div>
+                </div>
+                <div class="score-bar">
+                    <span class="score-number">评分: 65</span>
+                    <div class="score-visual">
+                        <div class="score-fill warm" style="width: 65%"></div>
+                    </div>
+                </div>
+                <div style="margin-top: 10px; color: #666; font-size: 0.9em;">
+                    <strong>意向信号:</strong> 伊朗知名设计师, 豪华定位, 国际标准, 高质量材料, 手工刺绣
+                </div>
+            </div>
+        </div>
+        
+        <!-- Egypt Section -->
+        <div class="region-section">
+            <div class="region-header">
+                <span class="region-flag">🇪🇬</span>
+                <h2 class="region-title">埃及 (Egypt) - 婚纱供应商</h2>
+                <span class="region-count">1 条线索</span>
+            </div>
+            
+            <!-- Lead 12: Chantelle Wedding Dress -->
+            <div class="lead-card warm">
+                <div class="lead-name">
+                    Chantelle Wedding Dress
+                    <span class="priority-badge warm">Warm</span>
+                </div>
+                <div class="lead-type">埃及最大婚纱供应商 | Cairo婚纱店</div>
+                <div class="lead-details">
+                    <div class="detail-item">
+                        <span class="detail-icon">📍</span>
+                        <span>18 Abdallah Deraz, Al Golf, Nasr City, Cairo, Egypt</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-icon">🌐</span>
+                        <span><a href="https://www.facebook.com/ChantelleWedding" class="contact-link" target="_blank">Facebook: ChantelleWedding</a></span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-icon">👍</span>
+                        <span>114万+ Facebook粉丝</span>
+                    </div>
+                </div>
+                <div class="score-bar">
+                    <span class="score-number">评分: 60</span>
+                    <div class="score-visual">
+                        <div class="score-fill warm" style="width: 60%"></div>
+                    </div>
+                </div>
+                <div style="margin-top: 10px; color: #666; font-size: 0.9em;">
+                    <strong>意向信号:</strong> 自称埃及最大婚纱供应商, 高社交媒体活跃度, Cairo实体店
+                </div>
+            </div>
+        </div>
+        
+        <!-- Saudi Arabia Section -->
+        <div class="region-section">
+            <div class="region-header">
+                <span class="region-flag">🇸🇦</span>
+                <h2 class="region-title">沙特阿拉伯 (Saudi Arabia) - 婚纱电商</h2>
+                <span class="region-count">暂无数据</span>
+            </div>
+            
+            <div class="no-data">
+                <strong>⚠️ 搜索受限</strong>
+                <p>本次搜索因搜索引擎限制未能获取沙特阿拉伯地区数据。建议下次执行时:</p>
+                <ul style="margin-top: 10px; text-align: left; padding-left: 20px;">
+                    <li>使用替代搜索引擎</li>
+                    <li>增加Riyadh/Jeddah婚纱店关键词</li>
+                    <li>尝试Instagram/Facebook搜索沙特婚纱品牌</li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Summary Section -->
+        <div class="region-section" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
+            <h2 style="font-size: 1.5em; margin-bottom: 20px;">📊 执行总结</h2>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+                <div>
+                    <h3 style="margin-bottom: 10px;">高优先级客户 (Hot ≥70分)</h3>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="margin-bottom: 8px;">✅ Metropol Wedding Dress (土耳其) - WhatsApp: +90 0552 607 8587</li>
+                        <li style="margin-bottom: 8px;">✅ Amarya Bridal (土耳其) - 批发部门联系页面</li>
+                        <li style="margin-bottom: 8px;">✅ Nurj Bridal (阿联酋) - 电话: +971 505 987 095</li>
+                        <li style="margin-bottom: 8px;">✅ Contessa Bridal (阿联酋) - WhatsApp: +971 508 851 351</li>
+                        <li style="margin-bottom: 8px;">✅ Parisa Danesh (伊朗) - 电话: +(98) 41-3332-49-86</li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 style="margin-bottom: 10px;">建议跟进策略</h3>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="margin-bottom: 8px;">1️⃣ 通过WhatsApp直接联系土耳其和阿联酋客户</li>
+                        <li style="margin-bottom: 8px;">2️⃣ 发送产品图册和批发价格表</li>
+                        <li style="margin-bottom: 8px;">3️⃣ 伊朗客户建议邮件+电话双渠道触达</li>
+                        <li style="margin-bottom: 8px;">4️⃣ 埃及客户通过Facebook私信联系</li>
+                        <li style="margin-bottom: 8px;">5️⃣ 下次任务重点补充沙特地区数据</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div style="margin-top: 20px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.3);">
+                <p style="font-size: 0.9em; opacity: 0.8;">
+                    本报告由 wedding-fabric-lead-hunter 技能自动生成 | 执行时间: 2026-04-05 04:46 | 数据来源: Web Search + Web Fetch
+                </p>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>👰 中东婚纱客户获客报告 | 生成于 2026年4月5日</p>
+            <p style="margin-top: 5px;">wedding-fabric-lead-hunter v1.0.0 | ClawDBot</p>
+        </div>
+    </div>
+</body>
+</html>

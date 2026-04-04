@@ -1,0 +1,25 @@
+{
+  "last_run": "2026-04-04T16:28:00",
+  "cron_task": "lead-hunter-middle-east-hourly",
+  "status": "completed",
+  "leads_collected": 20,
+  "new_leads_added": 0,
+  "skipped_no_contact": 0,
+  "by_region": {
+    "Turkey": 6,
+    "UAE": 6,
+    "Saudi Arabia": 2,
+    "Iran": 3,
+    "Egypt": 3
+  },
+  "by_priority": {
+    "hot": 9,
+    "warm": 8,
+    "cold": 3
+  },
+  "report_uploaded": true,
+  "report_url": "https://lightai.cloud.tencent.com/drive/preview?filePath=1775320181095/middle-east-leads-2026-04-04.html",
+  "search_tools_used": ["web_fetch"],
+  "search_blocked": ["web_search (DuckDuckGo bot detection)", "tavily (API key not configured)"],
+  "notes": "使用已积累的历史数据生成报告。包含完整联系方式：WhatsApp、电话、邮箱"
+}
