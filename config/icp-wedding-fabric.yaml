@@ -1,109 +1,185 @@
-# ICP: 婚纱成品/蕾丝加工厂采购决策者
-# 用于 lead-hunter 线索挖掘
+# ICP: 婚纱面料采购客户 - 婚纱制造厂/婚纱公司
+# 用于婚纱蕾丝面料制造厂寻找采购客户
 
-name: "wedding-garment-lace-manufacturer"
-description: "婚纱成品厂、蕾丝加工厂、婚纱礼服工作室的采购负责人/老板"
+name: "wedding-dress-manufacturer-buyer"
+description: "婚纱制造厂、婚纱成品生产商、婚纱礼服公司 - 需要采购婚纱面料的客户"
 
 # ═══════════════════════════════════════════════════════════════
-# 公司画像 (Firmographics)
+# 重要说明：我的角色定位
+# ═══════════════════════════════════════════════════════════════
+# 
+# 我是：婚纱蕾丝面料制造厂（源头工厂）
+# 我要找：需要采购婚纱面料的婚纱制造厂/婚纱公司（采购方）
+# 我不是找：同行竞争对手（其他面料供应商、布料批发商）
+#
+# ═══════════════════════════════════════════════════════════════
+
+# ═══════════════════════════════════════════════════════════════
+# 目标客户画像 - 采购方 (Firmographics)
 # ═══════════════════════════════════════════════════════════════
 
 company:
-  # 行业定位
+  # ⭐ 目标行业 - 会采购婚纱面料的客户
   industries:
     include:
-      - wedding-dress-manufacturing    # 婚纱制造
-      - bridal-gown-production        # 婚礼服生产
-      - lace-fabric-processing         # 蕾丝加工
-      - garment-manufacturing         # 服装制造
-      - textile-wholesale              # 纺织品批发
-      - bridal-studio                  # 婚纱工作室
-      - wedding-apparel                # 婚庆服装
-    keywords:
-      - 婚纱
-      - 婚纱礼服
-      - 蕾丝
-      - 婚纱厂
-      - 婚纱定制
-      - 婚纱工作室
-      - bridal
-      - wedding dress
-      - lace fabric
-      - bridal gown
+      - wedding-dress-manufacturing    # 婚纱制造厂 ✅ 核心目标
+      - bridal-gown-production        # 婚礼服生产厂 ✅ 核心目标
+      - wedding-apparel-factory       # 婚庆服装工厂 ✅
+      - bridal-studio                  # 婚纱工作室 ✅ 有定制需求
+      - wedding-dress-wholesale        # 婚纱批发商 ✅ 量大
+      - evening-dress-manufacturer     # 晚礼服制造商 ✅
+      - garment-oem-odm               # OEM/ODM服装厂 ✅ 量大稳定
+      - wedding-boutique               # 婚纱精品店 ✅ 中小量
       
-  # 公司规模 (人数)
-  employee_range:
-    min: 5              # 小型工作室
-    max: 300            # 大型工厂
+  # ❌ 排除同行 - 不找这些（竞争对手）
+  industries_exclude:
+    - fabric-manufacturer              # 面料制造商 ❌ 同行
+    - lace-fabric-manufacturer         # 蕾丝面料制造商 ❌ 同行
+    - textile-wholesale                # 纺织品批发商 ❌ 同行
+    - fabric-supplier                  # 面料供应商 ❌ 同行
+    - lace-supplier                    # 蕾丝供应商 ❌ 同行
+    - embroidery-factory               # 刺绣厂 ❌ 同行
+    - bridal-fabric-wholesale          # 婚纱面料批发 ❌ 同行
     
-  # 地理位置 - 国内为主
+  # 目标关键词 - 采购方特征
+  keywords_include:
+    - 婚纱厂
+    - 婚纱制造
+    - 婚纱生产
+    - 婚纱工厂
+    - 婚纱定制
+    - 婚纱批发
+    - 婚礼服厂
+    - 晚礼服厂
+    - OEM婚纱
+    - 外贸婚纱
+    - wedding dress factory
+    - bridal gown manufacturer
+    - wedding dress production
+    - bridal studio
+    - evening dress manufacturer
+    
+  # 排除关键词 - 同行特征
+  keywords_exclude:
+    - 面料供应商
+    - 蕾丝供应商
+    - 布料批发
+    - 面料批发商
+    - 蕾丝厂
+    - 纺织厂
+    - 刺绣厂
+    - 珠辅料
+    - fabric supplier
+    - lace supplier
+    - fabric wholesale
+    - textile manufacturer
+      
+  # 公司规模 - 采购量大的客户
+  employee_range:
+    preferred:
+      - min: 30             # 中型工厂，采购量大
+        max: 300
+        priority: high
+      - min: 10             # 小型工厂/工作室
+        max: 29
+        priority: medium
+      - min: 300            # 大型工厂，采购量巨大
+        max: 1000
+        priority: high
+        
+  # 地理位置 - 婚纱制造产业带
   location:
     focus_regions:
       - name: 苏州虎丘
-        weight: 30
-        description: 国内最大婚纱产地，1000+商户
+        weight: 35
+        description: 国内最大婚纱产地，1000+婚纱厂，采购量大
+        type: 核心产区
+      - name: 潮州
+        weight: 25
+        description: 外贸婚纱基地，大型工厂集中，OEM/ODM业务多
+        type: 外贸基地
       - name: 广州
         weight: 20
-        description: 婚纱批发中心，中大布料市场
-      - name: 潮州
-        weight: 20
-        description: 外贸婚纱基地，大型工厂集中
+        description: 婚纱批发中心，中大布料市场周边婚纱厂
+        type: 批发中心
       - name: 六安
         weight: 15
-        description: 新兴婚纱产业带，劳动力成本低
-      - name: 厦门
+        description: 新兴婚纱产业带，工厂多，成本敏感
+        type: 新兴产区
+      - name: 厦门/深圳
         weight: 10
-        description: 高端婚纱定制
-      - name: 深圳
+        description: 高端婚纱定制，品质要求高
+        type: 高端定制
+        
+    # 国际市场 - 外贸客户
+    international_focus:
+      - name: Turkey (Istanbul)
+        weight: 30
+        description: 全球婚纱制造中心，工厂密集
+        type: 国际核心产区
+      - name: Vietnam
+        weight: 20
+        description: 越南婚纱制造新兴基地
+        type: 新兴产区
+      - name: India
+        weight: 15
+        description: 印度婚纱/传统服饰制造
+        type: 区域市场
+      - name: UAE (Dubai)
+        weight: 15
+        description: 中东婚纱批发商，采购量大
+        type: 区域批发
+      - name: USA
         weight: 10
-        description: 高端定制，外贸
-    countries:
-      - China
-      - Vietnam          # 越南也有婚纱制造业
-      - India            # 印度婚纱制造
+        description: 美国婚纱品牌/精品店
+        type: 高端市场
       
-  # 业务信号
+  # 业务信号 - 采购需求特征
   business_signals:
     positive:
-      - 批量采购需求      # 需要批量布料
-      - OEM/ODM 业务     # 代工生产，量大
-      - 外贸出口         # 出口业务稳定
-      - 电商销售         # 淘宝/抖音/1688 有店
-      - 新品开发         # 在开发新款
+      - 批量生产需求      # 需要大量面料
+      - OEM/ODM 业务     # 代工生产，面料需求稳定
+      - 外贸出口         # 出口业务稳定，持续采购
+      - 电商销售         # 淘宝/抖音/1688 有店，有销量
+      - 新品开发         # 开发新款，需要新面料
+      - 季节备货         # 旺季前备货
+      - 扩产计划         # 扩大生产线，采购量增加
+      
     strong_buy_signals:
-      - 招聘采购专员
-      - 扩大生产线
-      - 新厂房/新仓库
-      - 参加婚纱展会
-      - 采购询价记录
+      - 招聘采购专员     # 明确采购需求
+      - 扩大生产线       # 需更多面料
+      - 新厂房/新仓库    # 产能扩张
+      - 参加婚纱展会     # 寻找供应商
+      - 采购询价记录     # 已有采购行为
+      - 社媒寻找面料     # 发布采购需求
 
 # ═══════════════════════════════════════════════════════════════
-# 关键人画像 (Demographics)
+# 关键人画像 - 采购决策者 (Demographics)
 # ═══════════════════════════════════════════════════════════════
 
 person:
-  # 职位头衔
+  # 职位头衔 - 采购决策者
   titles:
     include:
-      - 厂长
-      - 总经理
-      - 老板
-      - 采购经理
-      - 采购主管
-      - 面料采购
-      - 供应链经理
-      - 生产经理
-      - 业务经理
+      - 厂长              # 工厂负责人，采购决策
+      - 总经理            # 公司负责人
+      - 老板              # 小型工厂老板
+      - 采购经理          # 采购负责人 ✅ 核心目标
+      - 采购主管          # 采购执行
+      - 面料采购          # 面料采购专员
+      - 生产经理          # 生产负责人，影响采购
+      - 供应链经理        # 供应链管理
+      - 业务经理          # 业务负责人
       - founder
       - owner
       - general manager
-      - sourcing manager
+      - sourcing manager   # ✅ 核心目标
       - production manager
       
   # 部门
   department:
     include:
-      - 采购部
+      - 采购部            # ✅ 核心目标
       - 生产部
       - 业务部
       - 供应链
@@ -114,89 +190,143 @@ person:
     - 社媒有采购询价
     - 发布过采购信息
     - 参加过展会
+    - 有采购相关职位
 
 # ═══════════════════════════════════════════════════════════════
-# 意向信号 (Intent Signals)
+# 意向信号 (Intent Signals) - 采购意向
 # ═══════════════════════════════════════════════════════════════
 
 intent_signals:
-  # 强信号 - 高意向客户
+  # ⭐ 强信号 - 明确采购需求
   strong_signals:
-    - 发布采购信息: ["婚纱布料", "蕾丝面料", "婚纱面料", "批量"]
-    - 招聘岗位: ["采购", "面料采购", "供应链"]
-    - 社媒内容: ["寻找面料供应商", "婚纱布料采购", "蕾丝批发"]
-    - 展会参与: ["婚纱展", "面料展", "服装展"]
-    - 电商平台: ["1688采购", "面料询价"]
-    
-  # 中等信号
+    - 发布采购信息: 
+        keywords: ["婚纱布料采购", "蕾丝面料采购", "婚纱面料批发", "批量采购面料", "寻找面料供应商"]
+        weight: 100
+    - 招聘岗位: 
+        keywords: ["采购专员", "面料采购", "供应链专员", "采购经理"]
+        weight: 90
+    - 社媒内容:
+        keywords: ["寻找面料供应商", "婚纱布料采购", "蕾丝批发", "需要婚纱面料"]
+        weight: 85
+    - 展会参与:
+        keywords: ["婚纱展", "面料展", "服装展", "采购对接"]
+        weight: 80
+    - 电商平台:
+        keywords: ["1688采购", "面料询价", "批发采购"]
+        weight: 75
+        
+  # 中等信号 - 潜在采购需求
   medium_signals:
-    - 公司动态: ["扩产", "新品开发", "旺季备货"]
-    - 社媒发布: ["新款婚纱", "婚纱设计", "礼服制作"]
-    - 行业互动: ["婚纱圈互动", "面料相关评论"]
-    
-  # 时机信号
+    - 公司动态:
+        keywords: ["扩产", "新品开发", "旺季备货", "增加产能"]
+        weight: 60
+    - 业务类型:
+        keywords: ["OEM", "ODM", "外贸出口", "批量生产"]
+        weight: 70
+    - 公司规模:
+        keywords: ["300人以上", "大型工厂", "月产量5000+"]
+        weight: 65
+        
+  # 时机信号 - 最佳采购时机
   timing_signals:
-    - 婚纱旺季前: ["3-5月", "8-10月"]   # 婚纱旺季前1-2月备货
-    - 展会后: 30d                          # 展会后30天
-    - 新品发布: 60d                        # 发布新品后60天
-    - 招聘采购: 90d                        # 招聘采购人员后90天
+    - 婚纱旺季前:
+        months: ["2-3月", "7-8月"]   # 春季/秋季婚礼旺季前备货
+        description: "旺季前1-2月是最佳采购时机"
+    - 展会后:
+        days: 30
+        description: "展会后30天寻找供应商"
+    - 新品发布:
+        days: 60
+        description: "发布新品后需要采购面料"
+    - 招聘采购:
+        days: 90
+        description: "招聘采购人员后有采购需求"
 
 # ═══════════════════════════════════════════════════════════════
-# 评分权重
+# 评分权重 - 优先采购量大、有明确需求的客户
 # ═══════════════════════════════════════════════════════════════
+
+scoring:
+  weights:
+    industry_match: 30          # 行业匹配度（婚纱制造厂）
+    purchase_intent: 35         # ⭐ 采购意向信号（最重要）
+    company_size: 15            # 公司规模（越大采购量越大）
+    location_match: 10          # 地理位置（产业带优先）
+    activity_level: 10          # 活跃度（最近有动态）
+    
+  # ⭐ 加分项
+  bonus:
+    - has_purchasing_department: +10    # 有采购部门
+    - oem_odm_business: +15             # OEM/ODM业务（量大稳定）
+    - export_business: +10              # 外贸出口（持续采购）
+    - large_scale_production: +15       # 大规模生产（月产量5000+）
+    - recent_purchase_post: +20         # 近期发布采购信息
+    - hiring_sourcing: +15              # 招聘采购人员
+    
+  # ❌ 减分项/排除
+  penalty:
+    - competitor_industry: -100         # 同行（排除）
+    - no_purchase_signal: -20           # 无采购信号
+    - fabric_supplier_keywords: -100    # 面料供应商关键词（排除）
+    
+  thresholds:
+    hot: 70              # >= 70 高优先级（明确采购需求）
+    warm: 50             # 50-69 中等优先级（潜在需求）
+    cold: 30             # 30-49 可跟进（观望）
+    discard: 30          # < 30 放弃（或同行）
+
+# ═══════════════════════════════════════════════════════════════
+# 排除规则 (CRITICAL) - 排除同行竞争对手
+# ═══════════════════════════════════════════════════════════════
+
+exclusion_rules:
+  # ❌ 排除同行 - 这些是我的竞争对手，不是客户
+  competitor_keywords:
+    - 面料供应商
+    - 蕾丝供应商
+    - 布料批发商
+    - 纺织厂
+    - 蕾丝厂
+    - 刺绣厂
+    - 面料制造商
+    - fabric supplier
+    - lace manufacturer
+    - fabric manufacturer
+    - textile factory
+    - embroidery factory
+    
+  # 排除判断逻辑
+  exclusion_logic:
+    - if_company_type_contains: ["面料", "蕾丝供应商", "布料", "纺织"] → EXCLUDE
+    - if_business_scope_contains: ["面料批发", "蕾丝生产", "纺织"] → EXCLUDE
+    - if_keywords_match_competitor → EXCLUDE
+    
+  # 标记排除
+  action: "skip_with_note"
+  note: "同行竞争对手，排除采集"
 
 # ═══════════════════════════════════════════════════════════════
 # 采集约束 (Required Fields)
 # ═══════════════════════════════════════════════════════════════
 
 required_fields:
-  # 必须包含至少一种联系方式，否则不采集
+  # 必须包含至少一种联系方式
   contact_required:
     - phone             # 手机号/电话
     - email             # 邮箱
+    - whatsapp          # WhatsApp（国际客户）
     
   # 校验规则
   validation:
-    phone_pattern: "^[0-9\\-\\+\\s]{7,15}$"    # 电话号码格式
-    email_pattern: "^[\\w\\.-]+@[\\w\\.-]+\\.\\w+$"  # 邮箱格式
+    phone_pattern: "^[0-9\\-\\+\\s]{7,15}$"
+    email_pattern: "^[\\w\\.-]+@[\\w\\.-]+\\.\\w+$"
     
   # 无联系方式时的处理
-  no_contact_action: "skip"    # 跳过，不采集
-    
-# ═══════════════════════════════════════════════════════════════
-# 评分权重
-# ═══════════════════════════════════════════════════════════════
-
-scoring:
-  weights:
-    industry_match: 25          # 行业匹配度
-    location_match: 20          # 地理位置匹配 (苏州/广州等)
-    company_size: 15            # 公司规模适中
-    intent_signals: 25          # 采购意向信号
-    activity_level: 15           # 活跃度 (最近有动态)
-    contact_quality: 10         # 联系方式完整度 (加分项)
-    
-  thresholds:
-    hot: 70              # >= 70 高优先级客户
-    warm: 50             # 50-69 中等优先级
-    cold: 30             # 30-49 可跟进
-    discard: 30          # < 30 放弃
-    
-# ═══════════════════════════════════════════════════════════════
-# 数据存储配置
-# ═══════════════════════════════════════════════════════════════
-
-storage:
-  # 本地存储路径
-  local_path: "./data/"
+  no_contact_action: "skip"
   
-  # 看板数据文件
-  dashboard_file: "./data/lead-dashboard.json"
-  
-  # 看板增量更新模式
-  update_mode: "append"    # append = 新增数据，不覆盖
-  
-  # 数据保留策略
-  retention:
-    days: 90               # 保留90天数据
-    deduplicate: true      # 自动去重（按公司名+电话）
+  # ⭐ 必须采集的采购信息字段
+  purchase_info_required:
+    - estimated_purchase_volume   # 预估采购量（月/年）
+    - main_fabric_types           # 主要面料类型需求
+    - purchase_frequency          # 采购频率
+    - current_suppliers           # 现有供应商（了解竞争情况）
