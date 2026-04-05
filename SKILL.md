@@ -1,7 +1,7 @@
 ---
 name: wedding-fabric-lead-hunter
 description: "婚纱面料采购客户获客专家 | Wedding Fabric Buyer Hunter. 专为婚纱蕾丝面料制造厂（源头工厂）设计的获客技能。自动挖掘需要采购婚纱面料的婚纱制造厂、婚纱公司、婚纱成品生产商，生成个性化供货合作策略和开场白话术。⭐ 排除同行竞争对手（面料供应商/布料批发商）。⭐ 集成 cold-email-writer 生成专业开场白。触发词：婚纱面料客户、婚纱厂采购客户、婚纱制造厂获客、wedding dress manufacturer leads."
-version: 2.2.0
+version: 2.3.0
 author: ClawDBot
 license: MIT
 tags: [leads, wedding, fabric, sales, b2b, outreach, prospecting, buyer-acquisition, cold-email]
@@ -630,6 +630,76 @@ python3 ~/.openclaw/workspace/skills/wedding-fabric-lead-hunter/scripts/import-t
 
 ---
 
+## ⭐⭐⭐ 完整联系方式奖励规则 (CRITICAL - 最高优先级)
+
+**当客户电话和邮箱都完整时，触发深度采集模式：**
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│          🎯 完整联系方式 = 深度采集 + 1000字详细画像              │
+└─────────────────────────────────────────────────────────────────┘
+
+触发条件：
+├─ 有电话 ✅
+├─ 有邮箱 ✅
+└─ 两者都有 → 深度采集模式激活
+
+采集要求：
+├─ notes 字段：必须 ≥ 1000字
+├─ 包含完整的客户画像描述
+├─ 包含中英文开场白（用于自动发邮件）
+└─ 包含详细的产品推荐和合作策略
+```
+
+### 深度采集内容清单（完整联系方式时必填）
+
+当客户电话和邮箱都完整时，**必须**采集以下信息：
+
+| 类别 | 必填字段 | 详细程度要求 |
+|------|----------|--------------|
+| **公司基础** | company_name, company_type, company_scale, year_established | 完整详细 |
+| **业务详情** | business_scope, main_products, target_markets, sales_channels | 列出具体产品线 |
+| **产能信息** | monthly_production, production_capacity, certifications | 具体数字 |
+| **采购需求** | estimated_purchase_volume, purchase_frequency, current_suppliers | 详细分析 |
+| **采购信号** | purchase_signals, recent_activities, pain_points | 至少3条 |
+| **决策人** | key_decision_maker, contact_person, position | 姓名职位完整 |
+| **风格分析** | product_style, design_style, quality_requirement, price_sensitivity | 详细描述 |
+| **产品推荐** | recommend_product_1, recommend_product_2, recommend_product_3 | 匹配具体款式 |
+| **开场白** | 中文开场白, 英文开场白 | 各300字以上 |
+
+### 深度采集执行流程
+
+```
+检测到完整联系方式（电话+邮箱）
+├─
+│   ├─ Step 1: 深度搜索客户信息
+│   │   ├─ web_search: "{公司名} 企业信息 产品 业务"
+│   │   ├─ web_fetch: 访问官网/1688店铺获取详细信息
+│   │   ├─ web_search: "{公司名} 招聘 采购" 寻找采购信号
+│   │   └─ web_search: "{公司名} 新品 款式" 了解产品风格
+│   │
+│   ├─ Step 2: 整理完整画像（≥1000字）
+│   │   ├─ 公司概况（200字）
+│   │   ├─ 业务详情（200字）
+│   │   ├─ 采购需求分析（200字）
+│   │   ├─ 决策人信息（100字）
+│   │   ├─ 产品推荐（100字）
+│   │   ├─ 合作潜力评估（100字）
+│   │   ├─ 中文开场白（300字+）
+│   │   └─ 英文开场白（300字+）
+│   │
+│   ├─ Step 3: 生成中英文开场白
+│   │   ├─ 中文开场白：详细的公司介绍+产品推荐+合作邀请
+│   │   ├─ 英文开场白：专业的产品介绍+合作提案
+│   │   └─ 两者都可直接用于邮件发送
+│   │
+│   └─ Step 4: 写入 notes 字段（≥1000字）
+│
+└─ 完成
+```
+
+---
+
 ## 🎭 用户画像采集 (REQUIRED)
 
 **每次获客必须详细采集用户画像信息，重点关注采购需求和开场白准备：**
@@ -1130,6 +1200,255 @@ Hi [客户名] 👋
 - 试单量：XX卷（根据客户规模预估）
 - 试单金额：约XXX元
 - 转化周期：1-3个月
+
+═══════════════════════════════════════════════════════════════
+```
+
+---
+
+## ⭐⭐⭐ 完整联系方式详细模板 (≥1000字)
+
+**以下模板适用于电话+邮箱都完整的客户，用于自动发邮件：**
+
+```
+═══════════════════════════════════════════════════════════════
+         📋 完整客户档案 - 深度采集版 (≥1000字)
+═══════════════════════════════════════════════════════════════
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+                    📌 30秒快速了解
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+公司：[公司全称]
+├─ 类型：婚纱制造厂 ✅ 采购客户
+├─ 规模：[XX人] / 月产[XXX件]
+├─ 位置：[国家-地区-城市]
+├─ 业务：[OEM/外贸/定制/批发]
+├─ 采购量：⭐ [高/中/低] - 月采购约[XXX卷]
+├─ 联系人：[姓名] - [职位]
+├─ 电话：[完整电话] ✅
+├─ 邮箱：[完整邮箱] ✅
+└─ 官网：[网址]
+
+推荐理由：
+[3-5条具体理由，如：OEM业务稳定采购 + 外贸品质要求 + 月产量大 + 有完整联系方式]
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+                    📊 公司背景详情 (200字+)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+【公司概况】
+- 公司名称：[完整名称]
+- 英文名称：[英文名]
+- 成立时间：[YYYY]年（经营[X]年）
+- 注册资本：[XXX万]
+- 企业规模：[XX]人 / [XXXX]平米厂房
+- 年营业额：[XXX万]
+- 公司地址：[完整地址]
+
+【主营业务】
+- 业务类型：[婚纱制造/OEM/外贸出口/定制设计]
+- 产品类型：[婚纱/礼服/晚礼服]
+- 主打款式：[具体款式描述]
+- 价格区间：[XXX-XXX]元
+- 销售渠道：[线下批发/线上电商/外贸出口]
+- 主要客户：[国内外品牌/批发商/工作室]
+
+【市场定位】
+- 目标市场：[内销XX% / 外贸XX%]
+- 主要区域：[欧美/中东/东南亚/国内]
+- 品牌定位：[高端定制/中端批发/平价快销]
+- 竞争优势：[设计/价格/品质/交期]
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+                    🛒 采购需求分析 (200字+)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+【采购需求】
+- 月产量：[XXX]件
+- 预估月采购量：[XXX]卷面料
+- 面料需求：[蕾丝面料/刺绣面料/手工串珠面料]
+- 采购频率：[月度/季度采购]
+- 预算范围：[价格敏感度]
+
+【现有供应商】
+- 主要供应商：[供应商名称或"未知"]
+- 合作时长：[X年]
+- 替代机会：[有/无]
+- 痛点分析：[品质问题/交期不稳定/价格压力]
+
+【采购信号】⭐
+- 近期招聘：[招聘采购经理/面料采购]
+- 扩产计划：[新厂房/新设备]
+- 新品开发：[春季新款/定制系列]
+- 展会参与：[参加了XX展会]
+- 社媒动态：[寻找供应商/采购需求]
+
+【合作潜力】
+- 采购量评估：⭐ [高/中/低]
+- 合作稳定性：[OEM业务=稳定 / 外贸=持续]
+- 转化可能性：[高/中/低]
+- 预期首单：[XX卷 / 约XXX元]
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+                    👤 决策人信息 (100字+)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+【关键决策人】
+- 姓名：[姓名]
+- 职位：[采购经理/厂长/总经理/老板]
+- 决策权：[高/中/低]
+- 联系电话：[电话] ✅
+- WhatsApp：[WhatsApp号码]（如有）
+- 邮箱：[邮箱] ✅
+- LinkedIn：[LinkedIn链接]（如有）
+
+【沟通建议】
+- 最佳联系时间：[工作日上午/下午]
+- 沟通风格：[直接/委婉/专业]
+- 关注重点：[价格/品质/交期/服务]
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+                    🎯 产品推荐 (100字+)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+【推荐产品1】⭐ 首推
+- 产品：[刺绣蕾丝面料]
+- 适用款式：[客户XX款婚纱]
+- 匹配理由：[风格匹配/工艺适合]
+- 价格优势：[源头工厂直销，价格有竞争力]
+
+【推荐产品2】
+- 产品：[手工串珠面料]
+- 适用款式：[客户高端定制系列]
+- 匹配理由：[1000+手工串珠工人，适合复杂工艺]
+
+【推荐产品3】
+- 产品：[水溶蕾丝花边]
+- 适用款式：[客户礼服系列]
+- 匹配理由：[精致工艺，品质有保障]
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+                    📧 中文开场白 (300字+) ⭐ 可直接发邮件
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+主题：婚纱蕾丝面料合作 - 卓思蕾丝（JORICE）
+
+---
+
+尊敬的[客户姓名/负责人]：
+
+您好！
+
+我从[来源渠道]了解到贵司是专业的婚纱制造企业，特别注意到贵司的[具体款式/新品系列]设计精美，市场反响很好。
+
+我是东莞市卓思服饰有限公司（卓思蕾丝/JORICE）的[你的姓名]。我们成立于1994年，是专业的高端婚纱蕾丝面料源头工厂，30年来专注于刺绣蕾丝面料的研发和生产。
+
+我们的核心优势：
+
+🏭 工厂实力
+• 6000平米现代化厂房，60+台先进自动绣花设备
+• 年产能100万米，供货稳定，交期准时
+• 通过ISO质量认证，支持第三方质检
+
+🧵 产品特色
+• 刺绣蕾丝面料：适合高端婚纱、礼服
+• 手工串珠面料：1000+专业串珠工人，擅长复杂工艺
+• 水溶蕾丝花边：精致工艺，品质保障
+• 多种工艺可选：珠管绣、3D立体绣、绳绣、激光绣
+
+💰 合作优势
+• 源头工厂直销，价格比批发商低15-30%
+• 支持定制开发，可根据您的设计打样
+• 样品免费，让您先看品质再决定
+
+我注意到贵司的[具体款式]很适合使用我们的[推荐产品]，如果方便，我可以寄些样品供您参考。同时，我们也可以根据您的需求进行定制开发。
+
+期待有机会与贵司合作！
+
+此致
+敬礼！
+
+[你的姓名]
+[职位]
+东莞市卓思服饰有限公司 | 卓思蕾丝 JORICE
+官网：www.zhuosi-lace.net
+电话：[你的电话]
+邮箱：[你的邮箱]
+地址：广东省东莞市高埗镇
+
+---
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+                    📧 English Opening Email (300字+) ⭐ Ready to Send
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Subject: Premium Wedding Lace Fabric Partnership - JORICE
+
+---
+
+Dear [Customer Name],
+
+I hope this email finds you well.
+
+I came across your company while researching bridal manufacturers and was impressed by your beautiful wedding dress designs, especially your [specific style/collection].
+
+My name is [Your Name] from Dongguan Zhuosi Clothing Co., Ltd. (JORICE). Established in 1994, we are a premium wedding lace fabric manufacturer with 30 years of experience in embroidery lace production.
+
+WHY CHOOSE JORICE:
+
+🏭 Manufacturing Excellence
+• 6,000 sqm modern facility with 60+ advanced embroidery machines
+• Annual capacity of 1 million meters - reliable supply & on-time delivery
+• ISO certified quality, third-party inspection supported
+
+🧵 Product Range
+• Embroidery Lace Fabric: Perfect for high-end wedding dresses & evening gowns
+• Hand-beaded Fabric: 1,000+ skilled beading artisans for intricate designs
+• Water-soluble Lace: Exquisite craftsmanship with guaranteed quality
+• Multiple techniques: Bead tube embroidery, 3D embroidery, rope embroidery, laser embroidery
+
+💰 Partnership Benefits
+• Factory-direct pricing: 15-30% lower than wholesalers
+• Custom development available - we can create samples based on your designs
+• Free samples provided - see the quality before you decide
+
+I noticed your [specific style] would be perfect with our [recommended product]. I'd be happy to send you some samples for your review. We can also develop custom designs based on your specific requirements.
+
+I look forward to the possibility of working together!
+
+Best regards,
+
+[Your Name]
+[Title]
+Dongguan Zhuosi Clothing Co., Ltd. | JORICE
+Website: www.zhuosi-lace.net
+Phone: [Your Phone]
+Email: [Your Email]
+Address: Gaobu Town, Dongguan City, Guangdong Province, China
+
+---
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+                    ⚠️ 注意事项
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+【发送前检查】✅
+□ 确认客户姓名拼写正确
+□ 替换[具体款式]为客户实际产品
+□ 替换[推荐产品]为匹配的产品
+□ 填写你的联系方式
+□ 附件：可附上产品目录PDF或产品图片
+
+【跟进计划】
+- 发送后3天：电话/WhatsApp跟进确认收到
+- 发送后7天：询问样品需求
+- 发送后14天：再次联系，分享新品信息
+
+【其他联系方式】
+- WhatsApp：适合国际客户，回复率高
+- 电话：适合国内客户，直接沟通
+- LinkedIn：适合品牌客户，建立专业形象
 
 ═══════════════════════════════════════════════════════════════
 ```

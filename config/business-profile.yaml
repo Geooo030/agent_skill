@@ -316,6 +316,103 @@ opening_templates:
       或者有什么特定需求，我们也可以定制开发。
 
 # ═══════════════════════════════════════════════════════════════
+# 完整联系方式开场白模板 (≥300字，可直接发邮件)
+# ═══════════════════════════════════════════════════════════════
+
+full_contact_opening:
+
+  # 中文完整开场白（≥300字）
+  chinese_email:
+    subject: "婚纱蕾丝面料合作 - 卓思蕾丝（JORICE）"
+    
+    body: |
+      尊敬的[客户姓名/负责人]：
+      
+      您好！
+      
+      我从[来源渠道]了解到贵司是专业的婚纱制造企业，特别注意到贵司的[具体款式/新品系列]设计精美，市场反响很好。
+      
+      我是东莞市卓思服饰有限公司（卓思蕾丝/JORICE）的[你的姓名]。我们成立于1994年，是专业的高端婚纱蕾丝面料源头工厂，30年来专注于刺绣蕾丝面料的研发和生产。
+      
+      我们的核心优势：
+      
+      🏭 工厂实力
+      • 6000平米现代化厂房，60+台先进自动绣花设备
+      • 年产能100万米，供货稳定，交期准时
+      • 通过ISO质量认证，支持第三方质检
+      
+      🧵 产品特色
+      • 刺绣蕾丝面料：适合高端婚纱、礼服
+      • 手工串珠面料：1000+专业串珠工人，擅长复杂工艺
+      • 水溶蕾丝花边：精致工艺，品质保障
+      • 多种工艺可选：珠管绣、3D立体绣、绳绣、激光绣
+      
+      💰 合作优势
+      • 源头工厂直销，价格比批发商低15-30%
+      • 支持定制开发，可根据您的设计打样
+      • 样品免费，让您先看品质再决定
+      
+      我注意到贵司的[具体款式]很适合使用我们的[推荐产品]，如果方便，我可以寄些样品供您参考。同时，我们也可以根据您的需求进行定制开发。
+      
+      期待有机会与贵司合作！
+      
+      此致
+      敬礼！
+      
+      [你的姓名]
+      [职位]
+      东莞市卓思服饰有限公司 | 卓思蕾丝 JORICE
+      官网：www.zhuosi-lace.net
+      电话：[你的电话]
+      邮箱：[你的邮箱]
+      地址：广东省东莞市高埗镇
+
+  # 英文完整开场白（≥300字）
+  english_email:
+    subject: "Premium Wedding Lace Fabric Partnership - JORICE"
+    
+    body: |
+      Dear [Customer Name],
+      
+      I hope this email finds you well.
+      
+      I came across your company while researching bridal manufacturers and was impressed by your beautiful wedding dress designs, especially your [specific style/collection].
+      
+      My name is [Your Name] from Dongguan Zhuosi Clothing Co., Ltd. (JORICE). Established in 1994, we are a premium wedding lace fabric manufacturer with 30 years of experience in embroidery lace production.
+      
+      WHY CHOOSE JORICE:
+      
+      🏭 Manufacturing Excellence
+      • 6,000 sqm modern facility with 60+ advanced embroidery machines
+      • Annual capacity of 1 million meters - reliable supply & on-time delivery
+      • ISO certified quality, third-party inspection supported
+      
+      🧵 Product Range
+      • Embroidery Lace Fabric: Perfect for high-end wedding dresses & evening gowns
+      • Hand-beaded Fabric: 1,000+ skilled beading artisans for intricate designs
+      • Water-soluble Lace: Exquisite craftsmanship with guaranteed quality
+      • Multiple techniques: Bead tube embroidery, 3D embroidery, rope embroidery, laser embroidery
+      
+      💰 Partnership Benefits
+      • Factory-direct pricing: 15-30% lower than wholesalers
+      • Custom development available - we can create samples based on your designs
+      • Free samples provided - see the quality before you decide
+      
+      I noticed your [specific style] would be perfect with our [recommended product]. I'd be happy to send you some samples for your review. We can also develop custom designs based on your specific requirements.
+      
+      I look forward to the possibility of working together!
+      
+      Best regards,
+      
+      [Your Name]
+      [Title]
+      Dongguan Zhuosi Clothing Co., Ltd. | JORICE
+      Website: www.zhuosi-lace.net
+      Phone: [Your Phone]
+      Email: [Your Email]
+      Address: Gaobu Town, Dongguan City, Guangdong Province, China
+
+# ═══════════════════════════════════════════════════════════════
 # 推荐添加方式 (根据联系方式选择)
 # ═══════════════════════════════════════════════════════════════
 
